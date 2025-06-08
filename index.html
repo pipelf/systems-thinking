@@ -537,63 +537,93 @@
                     <div class="interactive-network-section">
                         <h3>Interactive Network Explorer</h3>
                         <div class="network-intro">
-                            <p>Click on nodes to explore how different elements connect in a typical organization:</p>
+                            <p>Click on nodes to explore how different elements connect in a typical organization. Notice how Leadership sits at the center as a hub:</p>
                         </div>
-                        <div class="network-container">
-                            <div class="network-visual">
-                                <div class="network-node leadership-node active" data-node="leadership">
-                                    <span class="node-icon">👑</span>
-                                    <span class="node-label">Leadership</span>
-                                </div>
-                                <div class="network-node culture-node" data-node="culture">
-                                    <span class="node-icon">🏛️</span>
-                                    <span class="node-label">Culture</span>
-                                </div>
-                                <div class="network-node processes-node" data-node="processes">
-                                    <span class="node-icon">⚙️</span>
-                                    <span class="node-label">Processes</span>
-                                </div>
-                                <div class="network-node people-node" data-node="people">
-                                    <span class="node-icon">👥</span>
-                                    <span class="node-label">People</span>
-                                </div>
-                                <div class="network-node results-node" data-node="results">
-                                    <span class="node-icon">📊</span>
-                                    <span class="node-label">Results</span>
-                                </div>
-                                <div class="network-node customers-node" data-node="customers">
-                                    <span class="node-icon">🤝</span>
-                                    <span class="node-label">Customers</span>
-                                </div>
-                                <!-- Connection lines will be added dynamically -->
-                                <svg class="connection-overlay">
-                                    <!-- SVG lines for connections -->
+                        
+                        <!-- Full-width network visualization -->
+                        <div class="network-visual-container">
+                            <div class="network-visual" id="network-visual">
+                                <!-- SVG for connection lines -->
+                                <svg class="connection-overlay" id="connection-svg">
+                                    <!-- Connection lines will be drawn here -->
                                 </svg>
-                            </div>
-                            <div class="connection-details" id="connection-details">
-                                <div class="connection-info">
-                                    <h4>Leadership Connections</h4>
-                                    <div class="connection-list">
-                                        <div class="connection-item strong">
-                                            <span class="connection-icon">➜</span>
-                                            <span><strong>Culture:</strong> Leaders shape values and behaviors</span>
-                                        </div>
-                                        <div class="connection-item strong">
-                                            <span class="connection-icon">➜</span>
-                                            <span><strong>Processes:</strong> Sets priorities and resource allocation</span>
-                                        </div>
-                                        <div class="connection-item medium">
-                                            <span class="connection-icon">➜</span>
-                                            <span><strong>People:</strong> Hiring, promotion, and development decisions</span>
-                                        </div>
-                                        <div class="connection-item weak">
-                                            <span class="connection-icon">〰️</span>
-                                            <span><strong>Results:</strong> Indirect through culture and processes</span>
-                                        </div>
+                                
+                                <!-- Network nodes positioned in hub-and-spoke layout -->
+                                <div class="network-node leadership-node active" data-node="leadership" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                    <div class="node-content">
+                                        <span class="node-icon">👑</span>
+                                        <span class="node-label">Leadership</span>
+                                        <div class="node-pulse"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="network-node culture-node" data-node="culture" style="top: 20%; left: 25%; transform: translate(-50%, -50%);">
+                                    <div class="node-content">
+                                        <span class="node-icon">🏛️</span>
+                                        <span class="node-label">Culture</span>
+                                        <div class="node-pulse"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="network-node processes-node" data-node="processes" style="top: 20%; right: 25%; transform: translate(50%, -50%);">
+                                    <div class="node-content">
+                                        <span class="node-icon">⚙️</span>
+                                        <span class="node-label">Processes</span>
+                                        <div class="node-pulse"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="network-node people-node" data-node="people" style="bottom: 20%; left: 25%; transform: translate(-50%, 50%);">
+                                    <div class="node-content">
+                                        <span class="node-icon">👥</span>
+                                        <span class="node-label">People</span>
+                                        <div class="node-pulse"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="network-node results-node" data-node="results" style="top: 50%; right: 10%; transform: translate(50%, -50%);">
+                                    <div class="node-content">
+                                        <span class="node-icon">📊</span>
+                                        <span class="node-label">Results</span>
+                                        <div class="node-pulse"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="network-node customers-node" data-node="customers" style="bottom: 20%; right: 25%; transform: translate(50%, 50%);">
+                                    <div class="node-content">
+                                        <span class="node-icon">🤝</span>
+                                        <span class="node-label">Customers</span>
+                                        <div class="node-pulse"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Connection details overlay -->
+                        <div class="connection-details-overlay" id="connection-details">
+                            <div class="connection-info">
+                                <h4>Leadership Connections</h4>
+                                <div class="connection-list">
+                                    <div class="connection-item strong">
+                                        <span class="connection-icon">➜</span>
+                                        <span><strong>Culture:</strong> Leaders shape values and behaviors</span>
+                                    </div>
+                                    <div class="connection-item strong">
+                                        <span class="connection-icon">➜</span>
+                                        <span><strong>Processes:</strong> Sets priorities and resource allocation</span>
+                                    </div>
+                                    <div class="connection-item medium">
+                                        <span class="connection-icon">➜</span>
+                                        <span><strong>People:</strong> Hiring, promotion, and development decisions</span>
+                                    </div>
+                                    <div class="connection-item weak">
+                                        <span class="connection-icon">〰️</span>
+                                        <span><strong>Results:</strong> Indirect through culture and processes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="network-insights">
                             <div class="insight-box">
                                 <span class="insight-icon">💡</span>
