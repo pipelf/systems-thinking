@@ -2134,6 +2134,287 @@ body {
     color: #0d7377;
 }
 
+/* ===== STEP 4 STOCKS, FLOWS & DELAYS STYLES ===== */
+
+/* Stocks Importance Section */
+.stocks-importance {
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(5, 150, 105, 0.05));
+    border: 2px solid rgba(5, 150, 105, 0.3);
+}
+
+/* Stocks Concepts Grid */
+.stocks-concepts .stocks-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.stock-card {
+    border-color: #059669;
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(5, 150, 105, 0.05));
+}
+
+.flow-card {
+    border-color: #0d7377;
+    background: linear-gradient(135deg, rgba(13, 115, 119, 0.1), rgba(13, 115, 119, 0.05));
+}
+
+.delay-card {
+    border-color: #f59e0b;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
+}
+
+.stock-examples, .flow-examples, .delay-examples {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.stock-example, .flow-example, .delay-example {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    border-left: 3px solid;
+}
+
+.stock-example {
+    background: rgba(5, 150, 105, 0.1);
+    border-left-color: #059669;
+}
+
+.flow-example.inflow {
+    background: rgba(34, 197, 94, 0.1);
+    border-left-color: #22c55e;
+}
+
+.flow-example.outflow {
+    background: rgba(239, 68, 68, 0.1);
+    border-left-color: #ef4444;
+}
+
+.delay-example {
+    background: rgba(245, 158, 11, 0.1);
+    border-left-color: #f59e0b;
+}
+
+.example-type {
+    font-weight: 600;
+    color: #1f2937;
+    min-width: 70px;
+}
+
+/* Stock and Flow Relationships */
+.relationships-section {
+    margin: 2rem 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.relationships-section h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.4rem;
+    color: #1f2937;
+}
+
+.relationship-formula {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.formula-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.05), rgba(255, 255, 255, 0.95));
+    border-radius: 16px;
+    border: 2px solid rgba(5, 150, 105, 0.2);
+    box-shadow: 0 4px 20px rgba(5, 150, 105, 0.1);
+}
+
+.formula-part {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    border: 2px solid #e5e7eb;
+    min-width: 100px;
+    transition: all 0.3s ease;
+}
+
+.formula-part:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.formula-part.stock-part {
+    border-color: #059669;
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(255, 255, 255, 0.95));
+}
+
+.formula-part.inflow-part {
+    border-color: #22c55e;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(255, 255, 255, 0.95));
+}
+
+.formula-part.outflow-part {
+    border-color: #ef4444;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(255, 255, 255, 0.95));
+}
+
+.formula-icon {
+    font-size: 1.5rem;
+}
+
+.formula-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1f2937;
+    text-align: center;
+}
+
+.formula-operator {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #059669;
+    font-family: 'Inter', sans-serif;
+}
+
+.formula-insight {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(251, 191, 36, 0.05));
+    border-radius: 16px;
+    border: 2px solid rgba(251, 191, 36, 0.4);
+    font-size: 1rem;
+    color: #1f2937;
+    font-weight: 500;
+    max-width: 600px;
+}
+
+.formula-insight .insight-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+/* Stocks Framework */
+.stocks-framework {
+    background: rgba(5, 150, 105, 0.05);
+    border: 2px solid rgba(5, 150, 105, 0.2);
+}
+
+.stocks-framework .stocks-steps .step-dot {
+    background: linear-gradient(135deg, #059669, #065f46);
+}
+
+/* Stocks Practice Exercise */
+.stocks-practice {
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(5, 150, 105, 0.05));
+    border: 2px solid rgba(5, 150, 105, 0.3);
+}
+
+.stocks-exercise {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.stocks-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.stocks-question strong {
+    display: block;
+    font-size: 1.1rem;
+    color: #1f2937;
+    margin-bottom: 1rem;
+}
+
+.stocks-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-left: 1rem;
+}
+
+.stocks-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    line-height: 1.4;
+}
+
+.stocks-option:hover {
+    background: rgba(5, 150, 105, 0.1);
+}
+
+.stocks-radio-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-left: 1rem;
+}
+
+.stocks-radio-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    line-height: 1.4;
+}
+
+.stocks-radio-option:hover {
+    background: rgba(5, 150, 105, 0.1);
+}
+
+.stocks-radio-option input[type="radio"] {
+    margin-top: 0.2rem;
+}
+
+/* Stocks Assessment */
+.stocks-assessment {
+    background: rgba(5, 150, 105, 0.05);
+    border: 2px solid rgba(5, 150, 105, 0.2);
+}
+
+.stocks-assessment .checkmark {
+    border-color: #059669;
+}
+
+.stocks-assessment .assessment-item input[type="checkbox"]:checked + .checkmark {
+    background: #059669;
+}
+
+#stocks-assessment-score {
+    color: #059669;
+}
+
 /* ===== STEP 3 FEEDBACK LOOPS STYLES ===== */
 
 /* Feedback Loops Importance Section */

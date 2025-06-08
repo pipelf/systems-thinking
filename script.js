@@ -830,6 +830,113 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeAllStepInteractions();
 });
 
+/**
+ * Check stocks exercise answers for Step 4
+ */
+function checkStocksAnswers() {
+    const feedback = document.getElementById('stocks-feedback');
+    if (feedback) {
+        feedback.style.display = 'block';
+        feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+}
+
+/**
+ * Update stocks assessment score for Step 4
+ */
+function updateStocksAssessmentScore() {
+    const checkedItems = document.querySelectorAll('.stocks-assessment input[type="checkbox"]:checked').length;
+    const totalItems = document.querySelectorAll('.stocks-assessment input[type="checkbox"]').length;
+    const scoreElement = document.getElementById('stocks-assessment-score');
+    
+    if (scoreElement && totalItems > 0) {
+        const percentage = Math.round((checkedItems / totalItems) * 100);
+        let message = '';
+        
+        if (percentage === 100) {
+            message = `🎉 Perfect! ${percentage}% - You've mastered stock and flow dynamics!`;
+        } else if (percentage >= 80) {
+            message = `🌟 Great work! ${percentage}% - You're understanding the structure!`;
+        } else if (percentage >= 60) {
+            message = `👍 Good progress! ${percentage}% - Keep building that stock & flow thinking!`;
+        } else if (percentage >= 40) {
+            message = `📝 Getting there! ${percentage}% - Review the 4-step framework above.`;
+        } else {
+            message = `🔄 ${percentage}% - Take time to practice identifying stocks vs flows.`;
+        }
+        
+        scoreElement.textContent = message;
+    }
+}
+
+/**
+ * Initialize Step 4 stock and flow interactions
+ */
+function initializeStep4Interactions() {
+    // Stocks assessment checklist handlers
+    const stocksAssessmentCheckboxes = document.querySelectorAll('.stocks-assessment input[type="checkbox"]');
+    stocksAssessmentCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateStocksAssessmentScore);
+    });
+    
+    // Practice exercise visual feedback
+    const stocksCheckboxes = document.querySelectorAll('.stocks-options input[type="checkbox"]');
+    stocksCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            const parentLabel = checkbox.closest('.stocks-option');
+            if (parentLabel) {
+                if (checkbox.classList.contains('stock-item') && checkbox.checked) {
+                    parentLabel.style.background = 'rgba(5, 150, 105, 0.2)';
+                } else if (checkbox.classList.contains('flow-item') && checkbox.checked) {
+                    parentLabel.style.background = 'rgba(239, 68, 68, 0.2)';
+                } else {
+                    parentLabel.style.background = '';
+                }
+            }
+        });
+    });
+    
+    // Radio button visual feedback for delays and hiring questions
+    const stocksRadioButtons = document.querySelectorAll('.stocks-radio-options input[type="radio"]');
+    stocksRadioButtons.forEach(radio => {
+        radio.addEventListener('change', () => {
+            // Reset all options in the same group
+            const groupName = radio.getAttribute('name');
+            const groupOptions = document.querySelectorAll(`input[name="${groupName}"]`);
+            groupOptions.forEach(option => {
+                const parentLabel = option.closest('.stocks-radio-option');
+                if (parentLabel) {
+                    parentLabel.style.background = '';
+                }
+            });
+            
+            // Highlight selected option
+            const parentLabel = radio.closest('.stocks-radio-option');
+            if (parentLabel && radio.checked) {
+                if (radio.value === 'right') {
+                    parentLabel.style.background = 'rgba(34, 197, 94, 0.2)';
+                } else {
+                    parentLabel.style.background = 'rgba(245, 158, 11, 0.2)';
+                }
+            }
+        });
+    });
+}
+
+/**
+ * Enhanced initialization that includes all step interactions
+ */
+function initializeAllStepInteractions() {
+    // Call original initialization
+    initializeNavigation();
+    
+    // Initialize step-specific interactions
+    initializeStep1Interactions();
+    initializeStep2Interactions();
+    initializeStep3Interactions();
+    initializeStep4Interactions();
+}
+
 // Make functions globally available for onclick handlers
 window.checkPracticeAnswers = checkPracticeAnswers;
 window.updateAssessmentScore = updateAssessmentScore;
@@ -837,3 +944,5 @@ window.checkMappingAnswers = checkMappingAnswers;
 window.updateMappingAssessmentScore = updateMappingAssessmentScore;
 window.checkLoopAnswers = checkLoopAnswers;
 window.updateLoopAssessmentScore = updateLoopAssessmentScore;
+window.checkStocksAnswers = checkStocksAnswers;
+window.updateStocksAssessmentScore = updateStocksAssessmentScore;
