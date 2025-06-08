@@ -604,8 +604,236 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeStep2Interactions();
 });
 
+/**
+ * Check loop exercise answers for Step 3
+ */
+function checkLoopAnswers() {
+    const feedback = document.getElementById('loop-feedback');
+    if (feedback) {
+        feedback.style.display = 'block';
+        feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+}
+
+/**
+ * Update loop assessment score for Step 3
+ */
+function updateLoopAssessmentScore() {
+    const checkedItems = document.querySelectorAll('.loop-assessment input[type="checkbox"]:checked').length;
+    const totalItems = document.querySelectorAll('.loop-assessment input[type="checkbox"]').length;
+    const scoreElement = document.getElementById('loop-assessment-score');
+    
+    if (scoreElement && totalItems > 0) {
+        const percentage = Math.round((checkedItems / totalItems) * 100);
+        let message = '';
+        
+        if (percentage === 100) {
+            message = `🎉 Perfect! ${percentage}% - You've mastered feedback loop dynamics!`;
+        } else if (percentage >= 80) {
+            message = `🌟 Great work! ${percentage}% - You're seeing the loops!`;
+        } else if (percentage >= 60) {
+            message = `👍 Good progress! ${percentage}% - Keep tracing those feedback cycles!`;
+        } else if (percentage >= 40) {
+            message = `📝 Getting there! ${percentage}% - Review the loop detection framework above.`;
+        } else {
+            message = `🔄 ${percentage}% - Take time to practice the 5-step loop detection process.`;
+        }
+        
+        scoreElement.textContent = message;
+    }
+}
+
+/**
+ * Initialize Step 3 loop interactions
+ */
+function initializeStep3Interactions() {
+    // Loop scenario tab handlers
+    const scenarioTabs = document.querySelectorAll('.scenario-tab');
+    const loopScenarios = document.querySelectorAll('.loop-scenario');
+    
+    scenarioTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const scenarioType = tab.getAttribute('data-scenario');
+            
+            // Update tab active state
+            scenarioTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            // Update scenario visibility
+            loopScenarios.forEach(scenario => {
+                scenario.classList.remove('active');
+                if (scenario.getAttribute('data-scenario') === scenarioType) {
+                    scenario.classList.add('active');
+                }
+            });
+            
+            // Reset any running animations
+            stopLoopAnimation();
+        });
+    });
+    
+    // Loop animation controls
+    const playButton = document.getElementById('playLoopAnimation');
+    const speedControl = document.getElementById('animationSpeed');
+    
+    if (playButton) {
+        playButton.addEventListener('click', toggleLoopAnimation);
+    }
+    
+    if (speedControl) {
+        speedControl.addEventListener('input', (e) => {
+            updateAnimationSpeed(parseFloat(e.target.value));
+        });
+    }
+    
+    // Loop assessment checklist handlers
+    const loopAssessmentCheckboxes = document.querySelectorAll('.loop-assessment input[type="checkbox"]');
+    loopAssessmentCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateLoopAssessmentScore);
+    });
+}
+
+/**
+ * Loop animation state
+ */
+let loopAnimationState = {
+    isPlaying: false,
+    currentStep: 0,
+    intervalId: null,
+    speed: 1000 // milliseconds
+};
+
+/**
+ * Toggle loop animation
+ */
+function toggleLoopAnimation() {
+    const playButton = document.getElementById('playLoopAnimation');
+    const playText = playButton.querySelector('.play-text');
+    
+    if (loopAnimationState.isPlaying) {
+        stopLoopAnimation();
+        playButton.classList.remove('playing');
+        playText.textContent = 'Watch Loop in Action';
+    } else {
+        startLoopAnimation();
+        playButton.classList.add('playing');
+        playText.textContent = 'Stop Animation';
+    }
+}
+
+/**
+ * Start loop animation
+ */
+function startLoopAnimation() {
+    const activeScenario = document.querySelector('.loop-scenario.active');
+    if (!activeScenario) return;
+    
+    const loopNodes = activeScenario.querySelectorAll('.loop-node');
+    const loopArrows = activeScenario.querySelectorAll('.loop-arrow');
+    const allElements = [...loopNodes, ...loopArrows];
+    
+    // Reset all elements
+    allElements.forEach(element => {
+        element.classList.remove('animated');
+    });
+    
+    loopAnimationState.isPlaying = true;
+    loopAnimationState.currentStep = 0;
+    
+    // Add animating class to container
+    activeScenario.classList.add('loop-animating');
+    
+    // Start animation sequence
+    animateNextStep(allElements);
+}
+
+/**
+ * Animate next step in the loop
+ */
+function animateNextStep(elements) {
+    if (!loopAnimationState.isPlaying || loopAnimationState.currentStep >= elements.length) {
+        // Animation complete, restart from beginning
+        if (loopAnimationState.isPlaying) {
+            setTimeout(() => {
+                loopAnimationState.currentStep = 0;
+                // Reset all elements
+                elements.forEach(element => {
+                    element.classList.remove('animated');
+                });
+                // Restart animation
+                setTimeout(() => animateNextStep(elements), 500);
+            }, 1000);
+        }
+        return;
+    }
+    
+    // Animate current element
+    const currentElement = elements[loopAnimationState.currentStep];
+    if (currentElement) {
+        currentElement.classList.add('animated');
+    }
+    
+    loopAnimationState.currentStep++;
+    
+    // Schedule next step
+    loopAnimationState.intervalId = setTimeout(() => {
+        animateNextStep(elements);
+    }, loopAnimationState.speed);
+}
+
+/**
+ * Stop loop animation
+ */
+function stopLoopAnimation() {
+    loopAnimationState.isPlaying = false;
+    
+    if (loopAnimationState.intervalId) {
+        clearTimeout(loopAnimationState.intervalId);
+        loopAnimationState.intervalId = null;
+    }
+    
+    // Remove animating class from all scenarios
+    const scenarios = document.querySelectorAll('.loop-scenario');
+    scenarios.forEach(scenario => {
+        scenario.classList.remove('loop-animating');
+        
+        // Reset all elements
+        const elements = scenario.querySelectorAll('.loop-node, .loop-arrow');
+        elements.forEach(element => {
+            element.classList.remove('animated');
+        });
+    });
+}
+
+/**
+ * Update animation speed
+ */
+function updateAnimationSpeed(speed) {
+    loopAnimationState.speed = 2000 / speed; // Invert so higher = faster
+}
+
+/**
+ * Enhanced initialization that includes all step interactions
+ */
+function initializeAllStepInteractions() {
+    // Call original initialization
+    initializeNavigation();
+    
+    // Initialize step-specific interactions
+    initializeStep1Interactions();
+    initializeStep2Interactions();
+    initializeStep3Interactions();
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initializeAllStepInteractions();
+});
+
 // Make functions globally available for onclick handlers
 window.checkPracticeAnswers = checkPracticeAnswers;
 window.updateAssessmentScore = updateAssessmentScore;
 window.checkMappingAnswers = checkMappingAnswers;
 window.updateMappingAssessmentScore = updateMappingAssessmentScore;
+window.checkLoopAnswers = checkLoopAnswers;
+window.updateLoopAssessmentScore = updateLoopAssessmentScore;
