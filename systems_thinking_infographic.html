@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Guide to Systems Thinking</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="main-header">
+            <h1 class="main-title">A Guide to Systems Thinking</h1>
+            <p class="subtitle">Navigate through the 6 essential steps of systems thinking</p>
+        </header>
+
+        <!-- Main Layout -->
+        <div class="main-layout">
+            <!-- Sidebar Navigation -->
+            <nav class="sidebar">
+                <div class="sidebar-header">
+                    <h2>Steps</h2>
+                    <div class="progress-indicator">
+                        <span class="current-step">1</span> / 6
+                    </div>
+                </div>
+                
+                <ul class="step-menu">
+                    <li class="step-menu-item active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-info">
+                            <div class="step-icon">🔍</div>
+                            <div class="step-title">Define the System</div>
+                        </div>
+                    </li>
+                    <li class="step-menu-item" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-info">
+                            <div class="step-icon">🕸️</div>
+                            <div class="step-title">See the Interconnections</div>
+                        </div>
+                    </li>
+                    <li class="step-menu-item" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-info">
+                            <div class="step-icon">🔄</div>
+                            <div class="step-title">Identify Feedback Loops</div>
+                        </div>
+                    </li>
+                    <li class="step-menu-item" data-step="4">
+                        <div class="step-number">4</div>
+                        <div class="step-info">
+                            <div class="step-icon">🛁</div>
+                            <div class="step-title">Understand Stocks, Flows & Delays</div>
+                        </div>
+                    </li>
+                    <li class="step-menu-item" data-step="5">
+                        <div class="step-number">5</div>
+                        <div class="step-info">
+                            <div class="step-icon">🧠</div>
+                            <div class="step-title">Shift Mental Models</div>
+                        </div>
+                    </li>
+                    <li class="step-menu-item" data-step="6">
+                        <div class="step-number">6</div>
+                        <div class="step-info">
+                            <div class="step-icon">🎯</div>
+                            <div class="step-title">Find Leverage Points</div>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- Central Network Animation (Compact Version) -->
+                <div class="sidebar-network">
+                    <div class="mini-network">
+                        <div class="mini-node">🎯</div>
+                        <div class="mini-node">⚙️</div>
+                        <div class="mini-node">🔄</div>
+                        <div class="mini-node">🌍</div>
+                    </div>
+                    <p class="network-label">Systems Network</p>
+                </div>
+            </nav>
+
+            <!-- Content Area -->
+            <main class="content-area">
+                <div class="step-content active" id="step-1">
+                    <div class="content-header">
+                        <h2 class="content-title">
+                            <span class="step-number-large">1</span>
+                            Define the System
+                        </h2>
+                        <p class="content-description">Master the foundation of systems thinking by learning to establish clear boundaries and identify the essential elements of any system.</p>
+                    </div>
+
+                    <!-- Why It Matters Section -->
+                    <div class="importance-section">
+                        <div class="importance-header">
+                            <span class="importance-icon">🎯</span>
+                            <h3>Why System Definition Matters</h3>
+                        </div>
+                        <div class="importance-content">
+                            <p>Poor system definition is the #1 reason why solutions fail. Without clear boundaries, you'll:</p>
+                            <div class="failure-points">
+                                <div class="failure-point">
+                                    <span class="failure-icon">❌</span>
+                                    <span>Solve the wrong problem</span>
+                                </div>
+                                <div class="failure-point">
+                                    <span class="failure-icon">❌</span>
+                                    <span>Miss critical stakeholders</span>
+                                </div>
+                                <div class="failure-point">
+                                    <span class="failure-icon">❌</span>
+                                    <span>Create solutions that don't stick</span>
+                                </div>
+                            </div>
+                            <div class="success-note">
+                                <span class="success-icon">✅</span>
+                                <span><strong>Good system definition</strong> ensures you're working on the right problem with the right scope.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Core Concepts -->
+                    <div class="concepts-section">
+                        <h3>Core Concepts to Master</h3>
+                        <div class="concept-grid">
+                            <div class="concept-card">
+                                <div class="concept-header">
+                                    <span class="concept-icon">🔲</span>
+                                    <strong>Boundaries</strong>
+                                </div>
+                                <p>What's inside vs outside your system. This determines your scope of influence and responsibility.</p>
+                            </div>
+                            <div class="concept-card">
+                                <div class="concept-header">
+                                    <span class="concept-icon">🎯</span>
+                                    <strong>Purpose</strong>
+                                </div>
+                                <p>Why the system exists. Every system serves a function - sometimes multiple conflicting ones.</p>
+                            </div>
+                            <div class="concept-card">
+                                <div class="concept-header">
+                                    <span class="concept-icon">👁️</span>
+                                    <strong>Perspective</strong>
+                                </div>
+                                <p>Different stakeholders see different systems. A hospital is a business to investors, healing to patients.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step-by-Step Framework -->
+                    <div class="framework-section">
+                        <h3>6-Step System Definition Framework</h3>
+                        <div class="framework-steps">
+                            <div class="framework-step">
+                                <div class="step-indicator">
+                                    <span class="step-dot">1</span>
+                                    <div class="step-line"></div>
+                                </div>
+                                <div class="step-content-fw">
+                                    <strong>Start with the Problem</strong>
+                                    <p>What specific issue are you trying to solve? Be concrete.</p>
+                                </div>
+                            </div>
+                            <div class="framework-step">
+                                <div class="step-indicator">
+                                    <span class="step-dot">2</span>
+                                    <div class="step-line"></div>
+                                </div>
+                                <div class="step-content-fw">
+                                    <strong>Identify the Purpose</strong>
+                                    <p>What function does this system serve? What's its reason for existing?</p>
+                                </div>
+                            </div>
+                            <div class="framework-step">
+                                <div class="step-indicator">
+                                    <span class="step-dot">3</span>
+                                    <div class="step-line"></div>
+                                </div>
+                                <div class="step-content-fw">
+                                    <strong>Map Key Players</strong>
+                                    <p>Who are the main actors? Include people, organizations, and roles.</p>
+                                </div>
+                            </div>
+                            <div class="framework-step">
+                                <div class="step-indicator">
+                                    <span class="step-dot">4</span>
+                                    <div class="step-line"></div>
+                                </div>
+                                <div class="step-content-fw">
+                                    <strong>Set Boundaries</strong>
+                                    <p>What's in vs out? Use your sphere of influence as a guide.</p>
+                                </div>
+                            </div>
+                            <div class="framework-step">
+                                <div class="step-indicator">
+                                    <span class="step-dot">5</span>
+                                    <div class="step-line"></div>
+                                </div>
+                                <div class="step-content-fw">
+                                    <strong>Consider Perspectives</strong>
+                                    <p>How do different stakeholders view this system differently?</p>
+                                </div>
+                            </div>
+                            <div class="framework-step">
+                                <div class="step-indicator">
+                                    <span class="step-dot">6</span>
+                                </div>
+                                <div class="step-content-fw">
+                                    <strong>Test & Refine</strong>
+                                    <p>Does this definition help you solve the original problem?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Interactive Boundary Visual -->
+                    <div class="enhanced-boundary-visual">
+                        <h3>Interactive System Boundary</h3>
+                        <div class="boundary-container">
+                            <div class="boundary-circle">
+                                <div class="inside-elements">
+                                    <div class="element" data-tooltip="Processes: Core activities and workflows">📋</div>
+                                    <div class="element" data-tooltip="People: Key roles and stakeholders">👥</div>
+                                    <div class="element" data-tooltip="Technology: Tools and systems">💻</div>
+                                    <div class="element" data-tooltip="Resources: Assets and capabilities">📞</div>
+                                </div>
+                                <div class="outside-elements">
+                                    <div class="outside-element" data-tooltip="Environment: External context">🏢</div>
+                                    <div class="outside-element" data-tooltip="Market forces: External influences">🌍</div>
+                                </div>
+                                <div class="boundary-label-inside">Your System</div>
+                            </div>
+                        </div>
+                        <div class="boundary-legend">
+                            <div class="legend-item">
+                                <div class="legend-dot inside"></div>
+                                <span>Inside: Elements you control or influence directly</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-dot outside"></div>
+                                <span>Outside: Environmental factors and constraints</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Common Pitfalls -->
+                    <div class="pitfalls-section">
+                        <h3>Common Pitfalls & How to Avoid Them</h3>
+                        <div class="pitfall-cards">
+                            <div class="pitfall-card">
+                                <div class="pitfall-header">
+                                    <span class="pitfall-icon">⚠️</span>
+                                    <strong>Scope Creep</strong>
+                                </div>
+                                <div class="pitfall-content">
+                                    <p class="pitfall-problem"><strong>Problem:</strong> Including everything "related" to your issue</p>
+                                    <p class="pitfall-solution"><strong>Solution:</strong> Focus on elements you can actually influence</p>
+                                </div>
+                            </div>
+                            <div class="pitfall-card">
+                                <div class="pitfall-header">
+                                    <span class="pitfall-icon">⚠️</span>
+                                    <strong>Single Perspective</strong>
+                                </div>
+                                <div class="pitfall-content">
+                                    <p class="pitfall-problem"><strong>Problem:</strong> Only seeing the system from your viewpoint</p>
+                                    <p class="pitfall-solution"><strong>Solution:</strong> Interview 3-5 different stakeholders</p>
+                                </div>
+                            </div>
+                            <div class="pitfall-card">
+                                <div class="pitfall-header">
+                                    <span class="pitfall-icon">⚠️</span>
+                                    <strong>Static Thinking</strong>
+                                </div>
+                                <div class="pitfall-content">
+                                    <p class="pitfall-problem"><strong>Problem:</strong> Treating system boundaries as permanent</p>
+                                    <p class="pitfall-solution"><strong>Solution:</strong> Revisit boundaries as you learn more</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Practice Exercise -->
+                    <div class="practice-section">
+                        <h3>Practice Exercise: Coffee Shop System</h3>
+                        <div class="practice-scenario">
+                            <div class="scenario-header">
+                                <span class="scenario-icon">☕</span>
+                                <strong>Scenario:</strong> You're hired to improve customer experience at a local coffee shop
+                            </div>
+                            <div class="practice-steps">
+                                <div class="practice-step">
+                                    <div class="practice-question">
+                                        <strong>1. What's the core problem you're solving?</strong>
+                                        <div class="practice-options">
+                                            <label class="practice-option">
+                                                <input type="radio" name="problem" value="wrong">
+                                                <span>Increase profits</span>
+                                            </label>
+                                            <label class="practice-option">
+                                                <input type="radio" name="problem" value="right">
+                                                <span>Improve customer experience</span>
+                                            </label>
+                                            <label class="practice-option">
+                                                <input type="radio" name="problem" value="wrong">
+                                                <span>Compete with Starbucks</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="practice-step">
+                                    <div class="practice-question">
+                                        <strong>2. What's inside your system boundary?</strong>
+                                        <div class="boundary-checklist">
+                                            <label class="checklist-item">
+                                                <input type="checkbox" class="inside-item" checked>
+                                                <span>Baristas and staff</span>
+                                            </label>
+                                            <label class="checklist-item">
+                                                <input type="checkbox" class="inside-item" checked>
+                                                <span>Coffee equipment</span>
+                                            </label>
+                                            <label class="checklist-item">
+                                                <input type="checkbox" class="inside-item" checked>
+                                                <span>Store layout</span>
+                                            </label>
+                                            <label class="checklist-item">
+                                                <input type="checkbox" class="outside-item">
+                                                <span>Competitor pricing</span>
+                                            </label>
+                                            <label class="checklist-item">
+                                                <input type="checkbox" class="outside-item">
+                                                <span>Coffee bean suppliers</span>
+                                            </label>
+                                            <label class="checklist-item">
+                                                <input type="checkbox" class="inside-item" checked>
+                                                <span>Customer service process</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="check-answers-btn" onclick="checkPracticeAnswers()">Check My Answers</button>
+                            <div class="practice-feedback" id="practice-feedback" style="display: none;">
+                                <div class="feedback-content">
+                                    <span class="feedback-icon">💡</span>
+                                    <div class="feedback-text">
+                                        <strong>Good work!</strong> You're focusing on elements within your control while recognizing external constraints. This boundary gives you a clear scope for improving customer experience.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Self-Assessment -->
+                    <div class="assessment-section">
+                        <h3>Self-Assessment Checklist</h3>
+                        <div class="assessment-intro">
+                            <p>Use this checklist to evaluate your system definition:</p>
+                        </div>
+                        <div class="assessment-checklist">
+                            <label class="assessment-item">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <span class="assessment-text">I can clearly state the system's primary purpose in one sentence</span>
+                            </label>
+                            <label class="assessment-item">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <span class="assessment-text">I've identified the key stakeholders and their different perspectives</span>
+                            </label>
+                            <label class="assessment-item">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <span class="assessment-text">My boundaries focus on elements I can actually influence</span>
+                            </label>
+                            <label class="assessment-item">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <span class="assessment-text">I understand what's outside my system but affects it</span>
+                            </label>
+                            <label class="assessment-item">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <span class="assessment-text">This definition helps me focus on solving the right problem</span>
+                            </label>
+                        </div>
+                        <div class="assessment-score" id="assessment-score"></div>
+                    </div>
+                </div>
+
+                <div class="step-content" id="step-2">
+                    <div class="content-header">
+                        <h2 class="content-title">
+                            <span class="step-number-large">2</span>
+                            See the Interconnections
+                        </h2>
+                        <p class="content-description">Map the relationships, influences, and dependencies between system elements to understand how they affect each other.</p>
+                    </div>
+                    
+                    <div class="content-sections">
+                        <div class="content-section">
+                            <h3>Key Relationships:</h3>
+                            <ul class="question-list">
+                                <li>Direct impacts and influences</li>
+                                <li>Indirect effects and ripples</li>
+                                <li>Dependencies and bottlenecks</li>
+                                <li>Information and resource flows</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Examples:</h3>
+                            <div class="example-item">
+                                <span class="example-icon">⚡</span>
+                                <div class="example-text">
+                                    <strong>Direct:</strong> Price → Customer Decision
+                                </div>
+                            </div>
+                            <div class="example-item">
+                                <span class="example-icon">〰️</span>
+                                <div class="example-text">
+                                    <strong>Indirect:</strong> Company Culture → Customer Satisfaction
+                                </div>
+                            </div>
+                            <div class="example-item">
+                                <span class="example-icon">🔗</span>
+                                <div class="example-text">
+                                    <strong>Dependency:</strong> Software depends on Hardware
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-content" id="step-3">
+                    <div class="content-header">
+                        <h2 class="content-title">
+                            <span class="step-number-large">3</span>
+                            Identify Feedback Loops
+                        </h2>
+                        <p class="content-description">Discover how actions create reactions that influence the original action, creating cycles of reinforcement or balance.</p>
+                    </div>
+                    
+                    <div class="content-sections">
+                        <div class="content-section">
+                            <h3>Loop Types:</h3>
+                            <ul class="question-list">
+                                <li><strong>Reinforcing (R):</strong> "The rich get richer" - Growth accelerates growth</li>
+                                <li><strong>Balancing (B):</strong> Goal-seeking behavior - System maintains equilibrium</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Examples:</h3>
+                            <div class="example-item">
+                                <span class="example-icon">📈</span>
+                                <div class="example-text">
+                                    <strong>Reinforcing:</strong> Success → Confidence → Effort → Success
+                                </div>
+                            </div>
+                            <div class="example-item">
+                                <span class="example-icon">⚖️</span>
+                                <div class="example-text">
+                                    <strong>Balancing:</strong> Temperature ↔ Thermostat Control
+                                </div>
+                            </div>
+                            <div class="example-item">
+                                <span class="example-icon">😰</span>
+                                <div class="example-text">
+                                    <strong>Vicious Cycle:</strong> Stress → Poor Sleep → More Stress
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-content" id="step-4">
+                    <div class="content-header">
+                        <h2 class="content-title">
+                            <span class="step-number-large">4</span>
+                            Understand Stocks, Flows & Delays
+                        </h2>
+                        <p class="content-description">Recognize what accumulates (stocks), rates of change (flows), and time delays in the system.</p>
+                    </div>
+                    
+                    <div class="content-sections">
+                        <div class="content-section">
+                            <h3>Key Concepts:</h3>
+                            <ul class="question-list">
+                                <li><strong>Stocks:</strong> What accumulates (water in bathtub, knowledge, money)</li>
+                                <li><strong>Flows:</strong> Rates of change (inflow/outflow, learning rate)</li>
+                                <li><strong>Delays:</strong> Time between cause and effect</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Examples:</h3>
+                            <div class="example-item">
+                                <span class="example-icon">🧠</span>
+                                <div class="example-text">
+                                    <strong>Knowledge System:</strong> Knowledge (stock) + Learning rate (flow) + Application delay
+                                </div>
+                            </div>
+                            <div class="example-item">
+                                <span class="example-icon">💰</span>
+                                <div class="example-text">
+                                    <strong>Financial System:</strong> Bank balance (stock) + Income/expenses (flows)
+                                </div>
+                            </div>
+                            <div class="example-item">
+                                <span class="example-icon">⏱️</span>
+                                <div class="example-text">
+                                    <strong>Delays:</strong> Training today → Performance improvement in 3 months
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-content" id="step-5">
+                    <div class="content-header">
+                        <h2 class="content-title">
+                            <span class="step-number-large">5</span>
+                            Shift Mental Models
+                        </h2>
+                        <p class="content-description">Change the deepest beliefs that create everything else in the system - the highest leverage point for transformation.</p>
+                    </div>
+                    
+                    <div class="mental-model-power">
+                        <div class="power-header">
+                            <strong>Mental Models Drive Everything</strong>
+                        </div>
+                        
+                        <div class="cascade-flow">
+                            <div class="cascade-level beliefs">
+                                <div class="level-icon">💭</div>
+                                <div class="level-content">
+                                    <div class="level-title">BELIEFS</div>
+                                    <div class="level-example">"People resist change"</div>
+                                </div>
+                            </div>
+                            
+                            <div class="cascade-arrow">⬇️</div>
+                            
+                            <div class="cascade-level structures">
+                                <div class="level-icon">🏗️</div>
+                                <div class="level-content">
+                                    <div class="level-title">STRUCTURES</div>
+                                    <div class="level-example">Top-down mandates</div>
+                                </div>
+                            </div>
+                            
+                            <div class="cascade-arrow">⬇️</div>
+                            
+                            <div class="cascade-level behaviors">
+                                <div class="level-icon">🏃</div>
+                                <div class="level-content">
+                                    <div class="level-title">BEHAVIORS</div>
+                                    <div class="level-example">Compliance or rebellion</div>
+                                </div>
+                            </div>
+                            
+                            <div class="cascade-arrow">⬇️</div>
+                            
+                            <div class="cascade-level events">
+                                <div class="level-icon">💥</div>
+                                <div class="level-content">
+                                    <div class="level-title">EVENTS</div>
+                                    <div class="level-example">Change initiatives fail</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="paradigm-shift-example">
+                        <div class="shift-header">
+                            <strong>Paradigm Shift in Action</strong>
+                            <span class="shift-subtitle">Toyota's revolutionary approach</span>
+                        </div>
+                        
+                        <div class="shift-transformation">
+                            <div class="transformation-side before-side">
+                                <div class="side-label">OLD PARADIGM</div>
+                                <div class="paradigm-belief">"Workers cause problems"</div>
+                                <div class="paradigm-structure">• Supervision & control<br>• Blame individuals<br>• Hide mistakes</div>
+                                <div class="paradigm-result">Result: Poor quality, low morale</div>
+                            </div>
+                            
+                            <div class="transformation-center">
+                                <div class="shift-symbol">🔄</div>
+                                <div class="shift-text">MENTAL MODEL SHIFT</div>
+                            </div>
+                            
+                            <div class="transformation-side after-side">
+                                <div class="side-label">NEW PARADIGM</div>
+                                <div class="paradigm-belief">"Workers solve problems"</div>
+                                <div class="paradigm-structure">• Empower employees<br>• Learn from mistakes<br>• Continuous improvement</div>
+                                <div class="paradigm-result">Result: World-class quality</div>
+                            </div>
+                        </div>
+                        
+                        <div class="shift-insight">
+                            <div class="insight-icon">💡</div>
+                            <div class="insight-text">One belief change transformed entire industries</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mental-model-detector">
+                        <div class="detector-header">
+                            <strong>Detect Your Mental Models</strong>
+                            <span class="detector-subtitle">Listen for these phrases</span>
+                        </div>
+                        
+                        <div class="detector-phrases">
+                            <div class="phrase-item">
+                                <span class="phrase-trigger">"That's just how things are"</span>
+                                <span class="phrase-signal">🚨 Unexamined assumption</span>
+                            </div>
+                            
+                            <div class="phrase-item">
+                                <span class="phrase-trigger">"People always..."</span>
+                                <span class="phrase-signal">🚨 Generalization about human nature</span>
+                            </div>
+                            
+                            <div class="phrase-item">
+                                <span class="phrase-trigger">"We can't because..."</span>
+                                <span class="phrase-signal">🚨 Limiting belief about possibilities</span>
+                            </div>
+                            
+                            <div class="phrase-item">
+                                <span class="phrase-trigger">"The only way is..."</span>
+                                <span class="phrase-signal">🚨 False constraint thinking</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detector-question">
+                            <div class="question-prompt">
+                                <span class="question-icon">🤔</span>
+                                <span class="question-text">What beliefs do you hold so deeply you don't question them?</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="transformation-call">
+                        <div class="call-icon">🎯</div>
+                        <div class="call-content">
+                            <div class="call-message">Change your mental models, change your world</div>
+                            <div class="call-action">Start by questioning what seems "obviously true"</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-content" id="step-6">
+                    <div class="content-header">
+                        <h2 class="content-title">
+                            <span class="step-number-large">6</span>
+                            Find Leverage Points
+                        </h2>
+                        <p class="content-description">Identify where small shifts in one thing can produce big changes in everything - the key to effective systems intervention.</p>
+                    </div>
+                    
+                    <div class="content-sections">
+                        <div class="content-section">
+                            <h3>Leverage Hierarchy (Increasing Power):</h3>
+                            <ul class="question-list">
+                                <li><strong>Parameters & Flows:</strong> Numbers, budgets, subsidies</li>
+                                <li><strong>Rules & Information:</strong> Policies, feedback loops, transparency</li>
+                                <li><strong>Power & Goals:</strong> Who decides, what we optimize for</li>
+                                <li><strong>Paradigms:</strong> Mindsets, worldviews, beliefs</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Examples:</h3>
+                            <div class="example-item">
+                                <span class="example-icon">🏢</span>
+                                <div class="example-text">
+                                    <strong>Workplace Culture:</strong> Change dress code (low) vs Change hiring criteria (high)
+                                </div>
+                            </div>
+                            <div class="example-item">
+                                <span class="example-icon">🎓</span>
+                                <div class="example-text">
+                                    <strong>Education Reform:</strong> Buy more textbooks (low) vs Redefine "success" (high)
+                                </div>
+                            </div>
+                            <div class="example-item">
+                                <span class="example-icon">🎯</span>
+                                <div class="example-text">
+                                    <strong>Key Question:</strong> What would make everything else easier?
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="content-navigation">
+                    <button class="nav-btn prev-btn" id="prevBtn">
+                        <span>← Previous</span>
+                    </button>
+                    <button class="nav-btn next-btn" id="nextBtn">
+                        <span>Next →</span>
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
