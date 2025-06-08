@@ -537,63 +537,93 @@
                     <div class="interactive-network-section">
                         <h3>Interactive Network Explorer</h3>
                         <div class="network-intro">
-                            <p>Click on nodes to explore how different elements connect in a typical organization:</p>
+                            <p>Click on nodes to explore how different elements connect in a typical organization. Notice how Leadership sits at the center as a hub:</p>
                         </div>
-                        <div class="network-container">
-                            <div class="network-visual">
-                                <div class="network-node leadership-node active" data-node="leadership">
-                                    <span class="node-icon">👑</span>
-                                    <span class="node-label">Leadership</span>
-                                </div>
-                                <div class="network-node culture-node" data-node="culture">
-                                    <span class="node-icon">🏛️</span>
-                                    <span class="node-label">Culture</span>
-                                </div>
-                                <div class="network-node processes-node" data-node="processes">
-                                    <span class="node-icon">⚙️</span>
-                                    <span class="node-label">Processes</span>
-                                </div>
-                                <div class="network-node people-node" data-node="people">
-                                    <span class="node-icon">👥</span>
-                                    <span class="node-label">People</span>
-                                </div>
-                                <div class="network-node results-node" data-node="results">
-                                    <span class="node-icon">📊</span>
-                                    <span class="node-label">Results</span>
-                                </div>
-                                <div class="network-node customers-node" data-node="customers">
-                                    <span class="node-icon">🤝</span>
-                                    <span class="node-label">Customers</span>
-                                </div>
-                                <!-- Connection lines will be added dynamically -->
-                                <svg class="connection-overlay">
-                                    <!-- SVG lines for connections -->
+                        
+                        <!-- Full-width network visualization -->
+                        <div class="network-visual-container">
+                            <div class="network-visual" id="network-visual">
+                                <!-- SVG for connection lines -->
+                                <svg class="connection-overlay" id="connection-svg">
+                                    <!-- Connection lines will be drawn here -->
                                 </svg>
-                            </div>
-                            <div class="connection-details" id="connection-details">
-                                <div class="connection-info">
-                                    <h4>Leadership Connections</h4>
-                                    <div class="connection-list">
-                                        <div class="connection-item strong">
-                                            <span class="connection-icon">➜</span>
-                                            <span><strong>Culture:</strong> Leaders shape values and behaviors</span>
-                                        </div>
-                                        <div class="connection-item strong">
-                                            <span class="connection-icon">➜</span>
-                                            <span><strong>Processes:</strong> Sets priorities and resource allocation</span>
-                                        </div>
-                                        <div class="connection-item medium">
-                                            <span class="connection-icon">➜</span>
-                                            <span><strong>People:</strong> Hiring, promotion, and development decisions</span>
-                                        </div>
-                                        <div class="connection-item weak">
-                                            <span class="connection-icon">〰️</span>
-                                            <span><strong>Results:</strong> Indirect through culture and processes</span>
-                                        </div>
+                                
+                                <!-- Network nodes positioned in hub-and-spoke layout -->
+                                <div class="network-node leadership-node active" data-node="leadership" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                    <div class="node-content">
+                                        <span class="node-icon">👑</span>
+                                        <span class="node-label">Leadership</span>
+                                        <div class="node-pulse"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="network-node culture-node" data-node="culture" style="top: 20%; left: 25%; transform: translate(-50%, -50%);">
+                                    <div class="node-content">
+                                        <span class="node-icon">🏛️</span>
+                                        <span class="node-label">Culture</span>
+                                        <div class="node-pulse"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="network-node processes-node" data-node="processes" style="top: 20%; right: 25%; transform: translate(50%, -50%);">
+                                    <div class="node-content">
+                                        <span class="node-icon">⚙️</span>
+                                        <span class="node-label">Processes</span>
+                                        <div class="node-pulse"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="network-node people-node" data-node="people" style="bottom: 20%; left: 25%; transform: translate(-50%, 50%);">
+                                    <div class="node-content">
+                                        <span class="node-icon">👥</span>
+                                        <span class="node-label">People</span>
+                                        <div class="node-pulse"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="network-node results-node" data-node="results" style="top: 50%; right: 10%; transform: translate(50%, -50%);">
+                                    <div class="node-content">
+                                        <span class="node-icon">📊</span>
+                                        <span class="node-label">Results</span>
+                                        <div class="node-pulse"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="network-node customers-node" data-node="customers" style="bottom: 20%; right: 25%; transform: translate(50%, 50%);">
+                                    <div class="node-content">
+                                        <span class="node-icon">🤝</span>
+                                        <span class="node-label">Customers</span>
+                                        <div class="node-pulse"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Connection details overlay -->
+                        <div class="connection-details-overlay" id="connection-details">
+                            <div class="connection-info">
+                                <h4>Leadership Connections</h4>
+                                <div class="connection-list">
+                                    <div class="connection-item strong">
+                                        <span class="connection-icon">➜</span>
+                                        <span><strong>Culture:</strong> Leaders shape values and behaviors</span>
+                                    </div>
+                                    <div class="connection-item strong">
+                                        <span class="connection-icon">➜</span>
+                                        <span><strong>Processes:</strong> Sets priorities and resource allocation</span>
+                                    </div>
+                                    <div class="connection-item medium">
+                                        <span class="connection-icon">➜</span>
+                                        <span><strong>People:</strong> Hiring, promotion, and development decisions</span>
+                                    </div>
+                                    <div class="connection-item weak">
+                                        <span class="connection-icon">〰️</span>
+                                        <span><strong>Results:</strong> Indirect through culture and processes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="network-insights">
                             <div class="insight-box">
                                 <span class="insight-icon">💡</span>
@@ -841,37 +871,529 @@
                         </h2>
                         <p class="content-description">Discover how actions create reactions that influence the original action, creating cycles of reinforcement or balance.</p>
                     </div>
-                    
-                    <div class="content-sections">
-                        <div class="content-section">
-                            <h3>Loop Types:</h3>
-                            <ul class="question-list">
-                                <li><strong>Reinforcing (R):</strong> "The rich get richer" - Growth accelerates growth</li>
-                                <li><strong>Balancing (B):</strong> Goal-seeking behavior - System maintains equilibrium</li>
-                            </ul>
+
+                    <!-- Why Feedback Loops Matter Section -->
+                    <div class="importance-section feedback-importance">
+                        <div class="importance-header">
+                            <span class="importance-icon">🔄</span>
+                            <h3>Why Feedback Loops Are The Secret to Systems Behavior</h3>
+                        </div>
+                        <div class="importance-content">
+                            <p>Feedback loops create the dynamic behavior patterns that make systems come alive. Understanding them reveals:</p>
+                            <div class="success-points">
+                                <div class="success-point">
+                                    <span class="success-icon">🎯</span>
+                                    <span>Why problems keep recurring despite "solutions"</span>
+                                </div>
+                                <div class="success-point">
+                                    <span class="success-icon">🎯</span>
+                                    <span>How small actions can create exponential change</span>
+                                </div>
+                                <div class="success-point">
+                                    <span class="success-icon">🎯</span>
+                                    <span>Where systems naturally resist or amplify change</span>
+                                </div>
+                            </div>
+                            <div class="warning-note">
+                                <span class="warning-icon">⚠️</span>
+                                <span><strong>Without understanding loops:</strong> You're fighting symptoms while the pattern continues.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Core Loop Types Section -->
+                    <div class="concepts-section loop-types">
+                        <h3>2 Fundamental Loop Types That Drive Everything</h3>
+                        <div class="concept-grid loop-grid">
+                            <div class="concept-card loop-card reinforcing">
+                                <div class="concept-header">
+                                    <span class="concept-icon">🚀</span>
+                                    <strong>Reinforcing Loops (R)</strong>
+                                </div>
+                                <p><strong>Growth engines or death spirals</strong><br>
+                                Whatever is happening accelerates. Success breeds success, problems compound.</p>
+                                <div class="loop-behavior">
+                                    <span class="behavior-label">Behavior:</span>
+                                    <span class="behavior-pattern">Exponential growth or decline</span>
+                                </div>
+                                <div class="loop-examples">
+                                    <div class="loop-example positive">
+                                        <span class="example-type">Virtuous:</span>
+                                        <span>Exercise → Energy → More Exercise</span>
+                                    </div>
+                                    <div class="loop-example negative">
+                                        <span class="example-type">Vicious:</span>
+                                        <span>Stress → Poor Decisions → More Stress</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="concept-card loop-card balancing">
+                                <div class="concept-header">
+                                    <span class="concept-icon">⚖️</span>
+                                    <strong>Balancing Loops (B)</strong>
+                                </div>
+                                <p><strong>Goal-seeking stabilizers</strong><br>
+                                System seeks equilibrium, counteracts deviations from target state.</p>
+                                <div class="loop-behavior">
+                                    <span class="behavior-label">Behavior:</span>
+                                    <span class="behavior-pattern">Oscillation toward target</span>
+                                </div>
+                                <div class="loop-examples">
+                                    <div class="loop-example helpful">
+                                        <span class="example-type">Helpful:</span>
+                                        <span>Thermostat maintaining temperature</span>
+                                    </div>
+                                    <div class="loop-example limiting">
+                                        <span class="example-type">Limiting:</span>
+                                        <span>Organizational resistance to change</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Loop Dynamics -->
+                    <div class="advanced-dynamics-section">
+                        <h3>Advanced Loop Dynamics</h3>
+                        <div class="dynamics-grid">
+                            <div class="dynamic-card delays">
+                                <div class="dynamic-header">
+                                    <span class="dynamic-icon">⏱️</span>
+                                    <strong>Delays</strong>
+                                </div>
+                                <p>Time gaps between cause and effect create instability and overshooting.</p>
+                                <div class="dynamic-example">
+                                    <span class="example-label">Example:</span>
+                                    <span>Hiring lag → Overwork → Burnout → More hiring needed</span>
+                                </div>
+                            </div>
+                            <div class="dynamic-card dominance">
+                                <div class="dynamic-header">
+                                    <span class="dynamic-icon">👑</span>
+                                    <strong>Loop Dominance</strong>
+                                </div>
+                                <p>Multiple loops compete. The strongest loop determines system behavior.</p>
+                                <div class="dynamic-example">
+                                    <span class="example-label">Example:</span>
+                                    <span>Growth ambition vs. resource limits</span>
+                                </div>
+                            </div>
+                            <div class="dynamic-card shifts">
+                                <div class="dynamic-header">
+                                    <span class="dynamic-icon">🔄</span>
+                                    <strong>Loop Shifts</strong>
+                                </div>
+                                <p>Systems switch between different dominant loops over time.</p>
+                                <div class="dynamic-example">
+                                    <span class="example-label">Example:</span>
+                                    <span>Startup: Growth loops → Maturity: Efficiency loops</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Loop Visualizer -->
+                    <div class="interactive-loop-section">
+                        <h3>Interactive Loop Explorer</h3>
+                        <div class="loop-intro">
+                            <p>Click on different scenarios to see how feedback loops create dynamic behavior patterns:</p>
                         </div>
                         
-                        <div class="content-section">
-                            <h3>Examples:</h3>
-                            <div class="example-item">
-                                <span class="example-icon">📈</span>
-                                <div class="example-text">
-                                    <strong>Reinforcing:</strong> Success → Confidence → Effort → Success
+                        <div class="loop-visualizer-container">
+                            <div class="loop-scenario-tabs">
+                                <button class="scenario-tab active" data-scenario="success">Success Spiral</button>
+                                <button class="scenario-tab" data-scenario="burnout">Burnout Cycle</button>
+                                <button class="scenario-tab" data-scenario="learning">Learning Loop</button>
+                                <button class="scenario-tab" data-scenario="competition">Market Competition</button>
+                            </div>
+                            
+                            <div class="loop-visual-area" id="loop-visual-area">
+                                <!-- Success Spiral Scenario -->
+                                <div class="loop-scenario active" data-scenario="success">
+                                    <div class="scenario-title">Success Spiral (Reinforcing Loop)</div>
+                                    <div class="loop-diagram">
+                                        <div class="loop-node start" data-step="1">
+                                            <span class="node-icon">🎯</span>
+                                            <span class="node-label">Small Win</span>
+                                        </div>
+                                        <div class="loop-arrow" data-step="1">
+                                            <span class="arrow-label">builds</span>
+                                        </div>
+                                        <div class="loop-node" data-step="2">
+                                            <span class="node-icon">💪</span>
+                                            <span class="node-label">Confidence</span>
+                                        </div>
+                                        <div class="loop-arrow" data-step="2">
+                                            <span class="arrow-label">motivates</span>
+                                        </div>
+                                        <div class="loop-node" data-step="3">
+                                            <span class="node-icon">🔥</span>
+                                            <span class="node-label">Greater Effort</span>
+                                        </div>
+                                        <div class="loop-arrow" data-step="3">
+                                            <span class="arrow-label">leads to</span>
+                                        </div>
+                                        <div class="loop-node" data-step="4">
+                                            <span class="node-icon">🏆</span>
+                                            <span class="node-label">Bigger Success</span>
+                                        </div>
+                                        <div class="loop-arrow feedback" data-step="4">
+                                            <span class="arrow-label">creates more</span>
+                                        </div>
+                                    </div>
+                                    <div class="loop-insight">
+                                        <span class="insight-icon">💡</span>
+                                        <span><strong>Key Insight:</strong> Each success makes the next one more likely - momentum builds momentum!</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Burnout Cycle Scenario -->
+                                <div class="loop-scenario" data-scenario="burnout">
+                                    <div class="scenario-title">Burnout Cycle (Reinforcing Loop)</div>
+                                    <div class="loop-diagram burnout-diagram">
+                                        <div class="loop-node start" data-step="1">
+                                            <span class="node-icon">📈</span>
+                                            <span class="node-label">High Pressure</span>
+                                        </div>
+                                        <div class="loop-arrow" data-step="1">
+                                            <span class="arrow-label">creates</span>
+                                        </div>
+                                        <div class="loop-node" data-step="2">
+                                            <span class="node-icon">😰</span>
+                                            <span class="node-label">Stress</span>
+                                        </div>
+                                        <div class="loop-arrow" data-step="2">
+                                            <span class="arrow-label">reduces</span>
+                                        </div>
+                                        <div class="loop-node" data-step="3">
+                                            <span class="node-icon">📉</span>
+                                            <span class="node-label">Performance</span>
+                                        </div>
+                                        <div class="loop-arrow" data-step="3">
+                                            <span class="arrow-label">increases</span>
+                                        </div>
+                                        <div class="loop-node" data-step="4">
+                                            <span class="node-icon">⚡</span>
+                                            <span class="node-label">More Pressure</span>
+                                        </div>
+                                        <div class="loop-arrow feedback" data-step="4">
+                                            <span class="arrow-label">creates even</span>
+                                        </div>
+                                    </div>
+                                    <div class="loop-insight burnout-insight">
+                                        <span class="insight-icon">⚠️</span>
+                                        <span><strong>Danger:</strong> Trying to solve with more pressure makes it worse - break the loop!</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Learning Loop Scenario -->
+                                <div class="loop-scenario" data-scenario="learning">
+                                    <div class="scenario-title">Learning Loop (Balancing with Reinforcing)</div>
+                                    <div class="loop-diagram learning-diagram">
+                                        <div class="loop-node start" data-step="1">
+                                            <span class="node-icon">❓</span>
+                                            <span class="node-label">Knowledge Gap</span>
+                                        </div>
+                                        <div class="loop-arrow" data-step="1">
+                                            <span class="arrow-label">motivates</span>
+                                        </div>
+                                        <div class="loop-node" data-step="2">
+                                            <span class="node-icon">📚</span>
+                                            <span class="node-label">Learning Effort</span>
+                                        </div>
+                                        <div class="loop-arrow" data-step="2">
+                                            <span class="arrow-label">builds</span>
+                                        </div>
+                                        <div class="loop-node" data-step="3">
+                                            <span class="node-icon">🧠</span>
+                                            <span class="node-label">Knowledge</span>
+                                        </div>
+                                        <div class="loop-arrow balancing" data-step="3">
+                                            <span class="arrow-label">reduces</span>
+                                        </div>
+                                        <div class="loop-arrow reinforcing" data-step="4">
+                                            <span class="arrow-label">& enables more</span>
+                                        </div>
+                                    </div>
+                                    <div class="loop-insight learning-insight">
+                                        <span class="insight-icon">🎯</span>
+                                        <span><strong>Complexity:</strong> Balancing loop (gap closing) + Reinforcing loop (knowledge enables more learning)</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Market Competition Scenario -->
+                                <div class="loop-scenario" data-scenario="competition">
+                                    <div class="scenario-title">Market Competition (Multiple Loops)</div>
+                                    <div class="loop-diagram competition-diagram">
+                                        <div class="loop-node start" data-step="1">
+                                            <span class="node-icon">🏪</span>
+                                            <span class="node-label">Market Share</span>
+                                        </div>
+                                        <div class="loop-arrow" data-step="1">
+                                            <span class="arrow-label">generates</span>
+                                        </div>
+                                        <div class="loop-node" data-step="2">
+                                            <span class="node-icon">💰</span>
+                                            <span class="node-label">Revenue</span>
+                                        </div>
+                                        <div class="loop-arrow" data-step="2">
+                                            <span class="arrow-label">funds</span>
+                                        </div>
+                                        <div class="loop-node" data-step="3">
+                                            <span class="node-icon">🔬</span>
+                                            <span class="node-label">R&D Investment</span>
+                                        </div>
+                                        <div class="loop-arrow" data-step="3">
+                                            <span class="arrow-label">improves</span>
+                                        </div>
+                                        <div class="loop-node" data-step="4">
+                                            <span class="node-icon">⭐</span>
+                                            <span class="node-label">Product Quality</span>
+                                        </div>
+                                        <div class="loop-arrow feedback" data-step="4">
+                                            <span class="arrow-label">increases</span>
+                                        </div>
+                                    </div>
+                                    <div class="loop-insight competition-insight">
+                                        <span class="insight-icon">🎯</span>
+                                        <span><strong>Strategic Insight:</strong> Winner takes all - small advantages compound into market dominance</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="example-item">
-                                <span class="example-icon">⚖️</span>
-                                <div class="example-text">
-                                    <strong>Balancing:</strong> Temperature ↔ Thermostat Control
-                                </div>
-                            </div>
-                            <div class="example-item">
-                                <span class="example-icon">😰</span>
-                                <div class="example-text">
-                                    <strong>Vicious Cycle:</strong> Stress → Poor Sleep → More Stress
+                            
+                            <div class="loop-controls">
+                                <button class="play-button" id="playLoopAnimation">
+                                    <span class="play-icon">▶️</span>
+                                    <span class="play-text">Watch Loop in Action</span>
+                                </button>
+                                <div class="animation-speed">
+                                    <label>Speed:</label>
+                                    <input type="range" id="animationSpeed" min="0.5" max="2" step="0.5" value="1">
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Framework Section -->
+                    <div class="framework-section loop-framework">
+                        <h3>5-Step Framework for Loop Detection</h3>
+                        <div class="framework-intro">
+                            <p>Use this systematic approach to uncover hidden feedback loops in any situation:</p>
+                        </div>
+                        <div class="framework-steps loop-detection-steps">
+                            <div class="framework-step">
+                                <div class="step-indicator">
+                                    <span class="step-dot">1</span>
+                                    <div class="step-line"></div>
+                                </div>
+                                <div class="step-content-fw">
+                                    <strong>Start with a Behavior Pattern</strong>
+                                    <p>What recurring pattern puzzles you? Growth, decline, oscillation, or stagnation?</p>
+                                </div>
+                            </div>
+                            <div class="framework-step">
+                                <div class="step-indicator">
+                                    <span class="step-dot">2</span>
+                                    <div class="step-line"></div>
+                                </div>
+                                <div class="step-content-fw">
+                                    <strong>Trace the Causal Chain</strong>
+                                    <p>Follow cause and effect: A influences B, which influences C, which influences...</p>
+                                </div>
+                            </div>
+                            <div class="framework-step">
+                                <div class="step-indicator">
+                                    <span class="step-dot">3</span>
+                                    <div class="step-line"></div>
+                                </div>
+                                <div class="step-content-fw">
+                                    <strong>Find Where It Circles Back</strong>
+                                    <p>Does the chain eventually influence the original element? That's your loop!</p>
+                                </div>
+                            </div>
+                            <div class="framework-step">
+                                <div class="step-indicator">
+                                    <span class="step-dot">4</span>
+                                    <div class="step-line"></div>
+                                </div>
+                                <div class="step-content-fw">
+                                    <strong>Identify Loop Type & Polarity</strong>
+                                    <p>Reinforcing (amplifies) or Balancing (seeks goal)? Positive or negative effects?</p>
+                                </div>
+                            </div>
+                            <div class="framework-step">
+                                <div class="step-indicator">
+                                    <span class="step-dot">5</span>
+                                </div>
+                                <div class="step-content-fw">
+                                    <strong>Look for Delays & Dominance</strong>
+                                    <p>What delays hide the connection? Which loop dominates when multiple loops compete?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Practice Exercise -->
+                    <div class="practice-section loop-practice">
+                        <h3>Practice Exercise: Customer Service Dilemma</h3>
+                        <div class="practice-scenario">
+                            <div class="scenario-header">
+                                <span class="scenario-icon">📞</span>
+                                <strong>Scenario:</strong> A call center is overwhelmed with complaints, response times are slow, and customer satisfaction is dropping.
+                            </div>
+                            <div class="loop-exercise">
+                                <div class="exercise-challenge">
+                                    <h4>Challenge: Map the Feedback Loops</h4>
+                                    <div class="scenario-elements">
+                                        <div class="element-tags">
+                                            <span class="element-tag">High Call Volume</span>
+                                            <span class="element-tag">Slow Response Times</span>
+                                            <span class="element-tag">Customer Frustration</span>
+                                            <span class="element-tag">Staff Stress</span>
+                                            <span class="element-tag">More Complaints</span>
+                                            <span class="element-tag">Employee Turnover</span>
+                                            <span class="element-tag">Training Time</span>
+                                            <span class="element-tag">Service Quality</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="loop-questions">
+                                    <div class="loop-question">
+                                        <strong>1. Identify the primary reinforcing loop:</strong>
+                                        <div class="loop-options">
+                                            <label class="loop-option">
+                                                <input type="radio" name="primary-loop" value="wrong1">
+                                                <span>High volume → Staff stress → Turnover → More volume</span>
+                                            </label>
+                                            <label class="loop-option">
+                                                <input type="radio" name="primary-loop" value="right">
+                                                <span>Slow response → Customer frustration → More complaints → Slower response</span>
+                                            </label>
+                                            <label class="loop-option">
+                                                <input type="radio" name="primary-loop" value="wrong2">
+                                                <span>Training → Better service → Less complaints → Less training</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="loop-question">
+                                        <strong>2. What creates the most dangerous delay in this system?</strong>
+                                        <div class="loop-options">
+                                            <label class="loop-option">
+                                                <input type="radio" name="delay" value="wrong1">
+                                                <span>Customer complaints → Management response</span>
+                                            </label>
+                                            <label class="loop-option">
+                                                <input type="radio" name="delay" value="right">
+                                                <span>Hiring → Training → Competent staff</span>
+                                            </label>
+                                            <label class="loop-option">
+                                                <input type="radio" name="delay" value="wrong2">
+                                                <span>Problem identification → Solution implementation</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="loop-question">
+                                        <strong>3. Where should you intervene for maximum leverage?</strong>
+                                        <div class="loop-options">
+                                            <label class="loop-option">
+                                                <input type="radio" name="intervention" value="wrong1">
+                                                <span>Hire more staff immediately</span>
+                                            </label>
+                                            <label class="loop-option">
+                                                <input type="radio" name="intervention" value="wrong2">
+                                                <span>Tell customers to be more patient</span>
+                                            </label>
+                                            <label class="loop-option">
+                                                <input type="radio" name="intervention" value="right">
+                                                <span>Prevent complaints with better self-service options</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="check-answers-btn" onclick="checkLoopAnswers()">Analyze My Loop Thinking</button>
+                                <div class="practice-feedback" id="loop-feedback" style="display: none;">
+                                    <div class="feedback-content">
+                                        <span class="feedback-icon">🎯</span>
+                                        <div class="feedback-text">
+                                            <strong>Excellent loop thinking!</strong> You've identified the vicious cycle at the heart of the problem. Notice how the "obvious" solution (hire more staff) doesn't break the loop - frustrated customers keep calling about the same issues. The leverage point is preventing complaints before they happen, which breaks the reinforcing loop and gives the system time to heal.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Common Pitfalls -->
+                    <div class="pitfalls-section loop-pitfalls">
+                        <h3>Common Loop-Thinking Pitfalls & How to Avoid Them</h3>
+                        <div class="pitfall-cards">
+                            <div class="pitfall-card">
+                                <div class="pitfall-header">
+                                    <span class="pitfall-icon">⚠️</span>
+                                    <strong>Symptom Looping</strong>
+                                </div>
+                                <div class="pitfall-content">
+                                    <p class="pitfall-problem"><strong>Problem:</strong> Confusing symptoms with actual feedback loops</p>
+                                    <p class="pitfall-solution"><strong>Solution:</strong> Trace deeper - what causes the cause? Keep asking "why?"</p>
+                                </div>
+                            </div>
+                            <div class="pitfall-card">
+                                <div class="pitfall-header">
+                                    <span class="pitfall-icon">⚠️</span>
+                                    <strong>Delay Blindness</strong>
+                                </div>
+                                <div class="pitfall-content">
+                                    <p class="pitfall-problem"><strong>Problem:</strong> Missing loops because effects happen much later</p>
+                                    <p class="pitfall-solution"><strong>Solution:</strong> Look for patterns across longer time horizons (months/years)</p>
+                                </div>
+                            </div>
+                            <div class="pitfall-card">
+                                <div class="pitfall-header">
+                                    <span class="pitfall-icon">⚠️</span>
+                                    <strong>Single Loop Fixation</strong>
+                                </div>
+                                <div class="pitfall-content">
+                                    <p class="pitfall-problem"><strong>Problem:</strong> Finding one loop and stopping, missing competing dynamics</p>
+                                    <p class="pitfall-solution"><strong>Solution:</strong> Always ask "What other loops might be operating here?"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Self-Assessment -->
+                    <div class="assessment-section loop-assessment">
+                        <h3>Feedback Loop Mastery Check</h3>
+                        <div class="assessment-intro">
+                            <p>Rate your current understanding of feedback loop dynamics:</p>
+                        </div>
+                        <div class="assessment-checklist">
+                            <label class="assessment-item">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <span class="assessment-text">I can distinguish between reinforcing and balancing loops</span>
+                            </label>
+                            <label class="assessment-item">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <span class="assessment-text">I systematically trace causal chains to find where they circle back</span>
+                            </label>
+                            <label class="assessment-item">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <span class="assessment-text">I recognize how delays hide loop connections</span>
+                            </label>
+                            <label class="assessment-item">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <span class="assessment-text">I can identify competing loops and which dominates when</span>
+                            </label>
+                            <label class="assessment-item">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <span class="assessment-text">I understand how to intervene to shift loop dynamics</span>
+                            </label>
+                        </div>
+                        <div class="assessment-score" id="loop-assessment-score"></div>
                     </div>
                 </div>
 
@@ -881,40 +1403,312 @@
                             <span class="step-number-large">4</span>
                             Understand Stocks, Flows & Delays
                         </h2>
-                        <p class="content-description">Recognize what accumulates (stocks), rates of change (flows), and time delays in the system.</p>
+                        <p class="content-description">Master the foundation of system behavior by understanding what accumulates, what changes it, and why timing matters.</p>
                     </div>
                     
-                    <div class="content-sections">
-                        <div class="content-section">
-                            <h3>Key Concepts:</h3>
-                            <ul class="question-list">
-                                <li><strong>Stocks:</strong> What accumulates (water in bathtub, knowledge, money)</li>
-                                <li><strong>Flows:</strong> Rates of change (inflow/outflow, learning rate)</li>
-                                <li><strong>Delays:</strong> Time between cause and effect</li>
-                            </ul>
+                    <!-- Why Stocks, Flows & Delays Matter Section -->
+                    <div class="importance-section stocks-importance">
+                        <div class="importance-header">
+                            <span class="importance-icon">🛁</span>
+                            <h3>Why Stocks, Flows & Delays Are the Foundation of System Behavior</h3>
                         </div>
-                        
-                        <div class="content-section">
-                            <h3>Examples:</h3>
-                            <div class="example-item">
-                                <span class="example-icon">🧠</span>
-                                <div class="example-text">
-                                    <strong>Knowledge System:</strong> Knowledge (stock) + Learning rate (flow) + Application delay
+                        <div class="importance-content">
+                            <p>Most system failures come from misunderstanding these fundamentals. Stocks, flows, and delays explain:</p>
+                            <div class="success-points">
+                                <div class="success-point">
+                                    <span class="success-icon">🎯</span>
+                                    <span>Why "quick fixes" often make problems worse</span>
+                                </div>
+                                <div class="success-point">
+                                    <span class="success-icon">🎯</span>
+                                    <span>How small, consistent actions create massive results</span>
+                                </div>
+                                <div class="success-point">
+                                    <span class="success-icon">🎯</span>
+                                    <span>Why timing and patience are critical for lasting change</span>
                                 </div>
                             </div>
-                            <div class="example-item">
-                                <span class="example-icon">💰</span>
-                                <div class="example-text">
-                                    <strong>Financial System:</strong> Bank balance (stock) + Income/expenses (flows)
-                                </div>
-                            </div>
-                            <div class="example-item">
-                                <span class="example-icon">⏱️</span>
-                                <div class="example-text">
-                                    <strong>Delays:</strong> Training today → Performance improvement in 3 months
-                                </div>
+                            <div class="warning-note">
+                                <span class="warning-icon">⚠️</span>
+                                <span><strong>Without understanding stocks and flows:</strong> You're driving blind - focusing on symptoms instead of root structure.</span>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Core Concepts Section -->
+                    <div class="concepts-section stocks-concepts">
+                        <h3>3 Core Elements That Drive All System Behavior</h3>
+                        <div class="concept-grid stocks-grid">
+                            <div class="concept-card stock-card">
+                                <div class="concept-header">
+                                    <span class="concept-icon">📊</span>
+                                    <strong>Stocks (What Accumulates)</strong>
+                                </div>
+                                <p><strong>The things you can see, feel, count, or measure at a point in time</strong><br>
+                                Stocks are the foundation - they represent the current state of your system.</p>
+                                <div class="stock-examples">
+                                    <div class="stock-example">
+                                        <span class="example-type">Physical:</span>
+                                        <span>Water in bathtub, money in bank, inventory</span>
+                                    </div>
+                                    <div class="stock-example">
+                                        <span class="example-type">Intangible:</span>
+                                        <span>Knowledge, trust, reputation, morale</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="concept-card flow-card">
+                                <div class="concept-header">
+                                    <span class="concept-icon">🌊</span>
+                                    <strong>Flows (What Changes Stocks)</strong>
+                                </div>
+                                <p><strong>The activities and rates that fill or drain stocks over time</strong><br>
+                                Flows are actions - they're what you do to change the system state.</p>
+                                <div class="flow-examples">
+                                    <div class="flow-example inflow">
+                                        <span class="example-type">Inflows (+):</span>
+                                        <span>Income, learning, hiring, producing</span>
+                                    </div>
+                                    <div class="flow-example outflow">
+                                        <span class="example-type">Outflows (-):</span>
+                                        <span>Expenses, forgetting, turnover, consumption</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="concept-card delay-card">
+                                <div class="concept-header">
+                                    <span class="concept-icon">⏰</span>
+                                    <strong>Delays (What Creates Instability)</strong>
+                                </div>
+                                <p><strong>Time gaps between causes and effects</strong><br>
+                                Delays hide connections and cause us to over-correct, creating oscillation.</p>
+                                <div class="delay-examples">
+                                    <div class="delay-example">
+                                        <span class="example-type">Information:</span>
+                                        <span>Performance metrics lag behind actions</span>
+                                    </div>
+                                    <div class="delay-example">
+                                        <span class="example-type">Material:</span>
+                                        <span>Skills take time to develop after training</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stock and Flow Relationships -->
+                    <div class="relationships-section">
+                        <h3>The Fundamental Relationship</h3>
+                        <div class="relationship-formula">
+                            <div class="formula-container">
+                                <div class="formula-part stock-part">
+                                    <span class="formula-icon">📊</span>
+                                    <span class="formula-label">Stock</span>
+                                </div>
+                                <div class="formula-operator">=</div>
+                                <div class="formula-part">
+                                    <span class="formula-icon">📊</span>
+                                    <span class="formula-label">Previous Stock</span>
+                                </div>
+                                <div class="formula-operator">+</div>
+                                <div class="formula-part inflow-part">
+                                    <span class="formula-icon">⬇️</span>
+                                    <span class="formula-label">Inflows</span>
+                                </div>
+                                <div class="formula-operator">-</div>
+                                <div class="formula-part outflow-part">
+                                    <span class="formula-icon">⬆️</span>
+                                    <span class="formula-label">Outflows</span>
+                                </div>
+                            </div>
+                            <div class="formula-insight">
+                                <span class="insight-icon">💡</span>
+                                <span><strong>Key Insight:</strong> Stocks can only change through flows. If your stock isn't changing, look at the flows!</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Framework Section -->
+                    <div class="framework-section stocks-framework">
+                        <h3>4-Step Stock & Flow Analysis Framework</h3>
+                        <div class="framework-intro">
+                            <p>Use this systematic approach to understand the structure driving any system's behavior:</p>
+                        </div>
+                        <div class="framework-steps stocks-steps">
+                            <div class="framework-step">
+                                <div class="step-indicator">
+                                    <span class="step-dot">1</span>
+                                    <div class="step-line"></div>
+                                </div>
+                                <div class="step-content-fw">
+                                    <strong>Identify the Key Stocks</strong>
+                                    <p>What can you measure or count? Look for nouns: money, people, knowledge, inventory, reputation.</p>
+                                </div>
+                            </div>
+                            <div class="framework-step">
+                                <div class="step-indicator">
+                                    <span class="step-dot">2</span>
+                                    <div class="step-line"></div>
+                                </div>
+                                <div class="step-content-fw">
+                                    <strong>Map the Flows</strong>
+                                    <p>What's filling or draining each stock? Look for verbs: earning, spending, hiring, learning, producing.</p>
+                                </div>
+                            </div>
+                            <div class="framework-step">
+                                <div class="step-indicator">
+                                    <span class="step-dot">3</span>
+                                    <div class="step-line"></div>
+                                </div>
+                                <div class="step-content-fw">
+                                    <strong>Find the Delays</strong>
+                                    <p>Where are the time gaps? Between action and information? Between cause and effect?</p>
+                                </div>
+                            </div>
+                            <div class="framework-step">
+                                <div class="step-indicator">
+                                    <span class="step-dot">4</span>
+                                </div>
+                                <div class="step-content-fw">
+                                    <strong>Understand the Dynamics</strong>
+                                    <p>How do delays create oscillation? Which stocks constrain the system? Where are the leverage points?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Practice Exercise -->
+                    <div class="practice-section stocks-practice">
+                        <h3>Practice Exercise: Hospital Capacity Crisis</h3>
+                        <div class="practice-scenario">
+                            <div class="scenario-header">
+                                <span class="scenario-icon">🏥</span>
+                                <strong>Scenario:</strong> A hospital is overwhelmed during flu season. Wait times are increasing, staff are burning out, and patient satisfaction is declining.
+                            </div>
+                            <div class="stocks-exercise">
+                                <div class="exercise-challenge">
+                                    <h4>Challenge: Identify the Stocks, Flows, and Delays</h4>
+                                    <div class="scenario-elements">
+                                        <div class="element-tags">
+                                            <span class="element-tag">Patients in waiting room</span>
+                                            <span class="element-tag">Available doctors</span>
+                                            <span class="element-tag">Patient arrival rate</span>
+                                            <span class="element-tag">Treatment completion rate</span>
+                                            <span class="element-tag">Staff fatigue level</span>
+                                            <span class="element-tag">Training new nurses</span>
+                                            <span class="element-tag">Staff hiring process</span>
+                                            <span class="element-tag">Patient discharge rate</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="stocks-questions">
+                                    <div class="stocks-question">
+                                        <strong>1. Which of these are STOCKS (things you can count/measure)?</strong>
+                                        <div class="stocks-options">
+                                            <label class="stocks-option">
+                                                <input type="checkbox" class="stock-item" checked>
+                                                <span>Patients in waiting room</span>
+                                            </label>
+                                            <label class="stocks-option">
+                                                <input type="checkbox" class="flow-item">
+                                                <span>Patient arrival rate</span>
+                                            </label>
+                                            <label class="stocks-option">
+                                                <input type="checkbox" class="stock-item" checked>
+                                                <span>Available doctors</span>
+                                            </label>
+                                            <label class="stocks-option">
+                                                <input type="checkbox" class="flow-item">
+                                                <span>Treatment completion rate</span>
+                                            </label>
+                                            <label class="stocks-option">
+                                                <input type="checkbox" class="stock-item" checked>
+                                                <span>Staff fatigue level</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="stocks-question">
+                                        <strong>2. What's the critical delay causing the crisis?</strong>
+                                        <div class="stocks-radio-options">
+                                            <label class="stocks-radio-option">
+                                                <input type="radio" name="delay" value="wrong1">
+                                                <span>Patient arrival → Diagnosis time</span>
+                                            </label>
+                                            <label class="stocks-radio-option">
+                                                <input type="radio" name="delay" value="right">
+                                                <span>Hiring decision → Trained staff available</span>
+                                            </label>
+                                            <label class="stocks-radio-option">
+                                                <input type="radio" name="delay" value="wrong2">
+                                                <span>Treatment → Patient recovery</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="stocks-question">
+                                        <strong>3. What would happen if you just "hired more doctors" immediately?</strong>
+                                        <div class="stocks-radio-options">
+                                            <label class="stocks-radio-option">
+                                                <input type="radio" name="hiring" value="wrong1">
+                                                <span>Immediate relief of patient backlog</span>
+                                            </label>
+                                            <label class="stocks-radio-option">
+                                                <input type="radio" name="hiring" value="right">
+                                                <span>Short-term costs with delayed benefits due to training time</span>
+                                            </label>
+                                            <label class="stocks-radio-option">
+                                                <input type="radio" name="hiring" value="wrong2">
+                                                <span>Instant improvement in patient satisfaction</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="check-answers-btn" onclick="checkStocksAnswers()">Analyze My Stock & Flow Thinking</button>
+                                <div class="practice-feedback" id="stocks-feedback" style="display: none;">
+                                    <div class="feedback-content">
+                                        <span class="feedback-icon">🎯</span>
+                                        <div class="feedback-text">
+                                            <strong>Excellent analysis!</strong> You've identified the key structural issue: the delay between hiring decisions and having trained, productive staff. This is why hospitals struggle during sudden demand spikes - you can't quickly adjust your capacity stock. The leverage point is building resilient capacity before you need it, not reactive hiring during crises.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Self-Assessment -->
+                    <div class="assessment-section stocks-assessment">
+                        <h3>Stocks, Flows & Delays Mastery Check</h3>
+                        <div class="assessment-intro">
+                            <p>Rate your current understanding of stock and flow dynamics:</p>
+                        </div>
+                        <div class="assessment-checklist">
+                            <label class="assessment-item">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <span class="assessment-text">I can distinguish between stocks (accumulations) and flows (rates)</span>
+                            </label>
+                            <label class="assessment-item">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <span class="assessment-text">I understand that stocks can only change through flows</span>
+                            </label>
+                            <label class="assessment-item">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <span class="assessment-text">I can identify delays that create instability and oscillation</span>
+                            </label>
+                            <label class="assessment-item">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <span class="assessment-text">I recognize how delays lead to policy resistance and overreaction</span>
+                            </label>
+                            <label class="assessment-item">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <span class="assessment-text">I can apply stock and flow thinking to understand system behavior</span>
+                            </label>
+                        </div>
+                        <div class="assessment-score" id="stocks-assessment-score"></div>
                     </div>
                 </div>
 
@@ -1107,6 +1901,16 @@
             </main>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-message">
+                <span class="footer-icon">🤖</span>
+                <span class="footer-text">Created with the assistance of <strong>Cline</strong> and <strong>Claude 4</strong></span>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

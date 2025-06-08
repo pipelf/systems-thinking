@@ -372,65 +372,161 @@ function initializeStep2Interactions() {
     // Network node interaction
     const networkNodes = document.querySelectorAll('.network-node');
     const connectionDetails = document.getElementById('connection-details');
+    const connectionSvg = document.getElementById('connection-svg');
     
-    // Network connection data
+    // Network connection data with node positioning
+    const nodePositions = {
+        leadership: { x: 50, y: 50 }, // Center hub
+        culture: { x: 25, y: 20 },     // Top left
+        processes: { x: 75, y: 20 },   // Top right
+        people: { x: 25, y: 80 },      // Bottom left
+        results: { x: 90, y: 50 },     // Right
+        customers: { x: 75, y: 80 }    // Bottom right
+    };
+    
     const connectionData = {
         leadership: {
             title: 'Leadership Connections',
             connections: [
-                { target: 'Culture', strength: 'strong', description: 'Leaders shape values and behaviors', icon: '➜' },
-                { target: 'Processes', strength: 'strong', description: 'Sets priorities and resource allocation', icon: '➜' },
-                { target: 'People', strength: 'medium', description: 'Hiring, promotion, and development decisions', icon: '➜' },
-                { target: 'Results', strength: 'weak', description: 'Indirect through culture and processes', icon: '〰️' }
+                { target: 'culture', strength: 'strong', description: 'Leaders shape values and behaviors', icon: '➜' },
+                { target: 'processes', strength: 'strong', description: 'Sets priorities and resource allocation', icon: '➜' },
+                { target: 'people', strength: 'medium', description: 'Hiring, promotion, and development decisions', icon: '➜' },
+                { target: 'results', strength: 'weak', description: 'Indirect through culture and processes', icon: '〰️' }
             ]
         },
         culture: {
             title: 'Culture Connections',
             connections: [
-                { target: 'People', strength: 'strong', description: 'Culture attracts and shapes behavior', icon: '➜' },
-                { target: 'Processes', strength: 'medium', description: 'Influences how work gets done', icon: '➜' },
-                { target: 'Customers', strength: 'medium', description: 'Culture affects customer experience', icon: '➜' },
-                { target: 'Leadership', strength: 'medium', description: 'Culture can influence leadership decisions', icon: '↔️' }
+                { target: 'people', strength: 'strong', description: 'Culture attracts and shapes behavior', icon: '➜' },
+                { target: 'processes', strength: 'medium', description: 'Influences how work gets done', icon: '➜' },
+                { target: 'customers', strength: 'medium', description: 'Culture affects customer experience', icon: '➜' },
+                { target: 'leadership', strength: 'medium', description: 'Culture can influence leadership decisions', icon: '↔️' }
             ]
         },
         processes: {
             title: 'Process Connections',
             connections: [
-                { target: 'Results', strength: 'strong', description: 'Processes directly drive outcomes', icon: '➜' },
-                { target: 'People', strength: 'medium', description: 'Processes shape daily work experience', icon: '➜' },
-                { target: 'Customers', strength: 'strong', description: 'Processes create customer experience', icon: '➜' },
-                { target: 'Culture', strength: 'weak', description: 'Processes can reinforce cultural values', icon: '〰️' }
+                { target: 'results', strength: 'strong', description: 'Processes directly drive outcomes', icon: '➜' },
+                { target: 'people', strength: 'medium', description: 'Processes shape daily work experience', icon: '➜' },
+                { target: 'customers', strength: 'strong', description: 'Processes create customer experience', icon: '➜' },
+                { target: 'culture', strength: 'weak', description: 'Processes can reinforce cultural values', icon: '〰️' }
             ]
         },
         people: {
             title: 'People Connections',
             connections: [
-                { target: 'Results', strength: 'strong', description: 'People execute and deliver outcomes', icon: '➜' },
-                { target: 'Customers', strength: 'strong', description: 'People directly interact with customers', icon: '➜' },
-                { target: 'Culture', strength: 'medium', description: 'People both shape and reflect culture', icon: '↔️' },
-                { target: 'Processes', strength: 'medium', description: 'People can improve or work around processes', icon: '↔️' }
+                { target: 'results', strength: 'strong', description: 'People execute and deliver outcomes', icon: '➜' },
+                { target: 'customers', strength: 'strong', description: 'People directly interact with customers', icon: '➜' },
+                { target: 'culture', strength: 'medium', description: 'People both shape and reflect culture', icon: '↔️' },
+                { target: 'processes', strength: 'medium', description: 'People can improve or work around processes', icon: '↔️' }
             ]
         },
         results: {
             title: 'Results Connections',
             connections: [
-                { target: 'Leadership', strength: 'medium', description: 'Results influence leadership decisions', icon: '➜' },
-                { target: 'Customers', strength: 'strong', description: 'Results affect customer satisfaction', icon: '➜' },
-                { target: 'People', strength: 'weak', description: 'Results impact morale and motivation', icon: '〰️' },
-                { target: 'Processes', strength: 'weak', description: 'Results may trigger process changes', icon: '〰️' }
+                { target: 'leadership', strength: 'medium', description: 'Results influence leadership decisions', icon: '➜' },
+                { target: 'customers', strength: 'strong', description: 'Results affect customer satisfaction', icon: '➜' },
+                { target: 'people', strength: 'weak', description: 'Results impact morale and motivation', icon: '〰️' },
+                { target: 'processes', strength: 'weak', description: 'Results may trigger process changes', icon: '〰️' }
             ]
         },
         customers: {
             title: 'Customer Connections',
             connections: [
-                { target: 'Results', strength: 'strong', description: 'Customer satisfaction drives business results', icon: '➜' },
-                { target: 'Leadership', strength: 'weak', description: 'Customer feedback influences strategy', icon: '〰️' },
-                { target: 'Processes', strength: 'medium', description: 'Customer needs shape process design', icon: '➜' },
-                { target: 'People', strength: 'medium', description: 'Customer interactions affect employee experience', icon: '↔️' }
+                { target: 'results', strength: 'strong', description: 'Customer satisfaction drives business results', icon: '➜' },
+                { target: 'leadership', strength: 'weak', description: 'Customer feedback influences strategy', icon: '〰️' },
+                { target: 'processes', strength: 'medium', description: 'Customer needs shape process design', icon: '➜' },
+                { target: 'people', strength: 'medium', description: 'Customer interactions affect employee experience', icon: '↔️' }
             ]
         }
     };
     
+    // Initialize SVG connections
+    function initializeConnections() {
+        if (!connectionSvg) return;
+        
+        // Create arrow markers for different connection strengths
+        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        
+        const markers = ['strong', 'medium', 'weak'];
+        markers.forEach(type => {
+            const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
+            marker.setAttribute('id', `arrow-${type}`);
+            marker.setAttribute('viewBox', '0 0 10 10');
+            marker.setAttribute('refX', '9');
+            marker.setAttribute('refY', '3');
+            marker.setAttribute('markerWidth', '6');
+            marker.setAttribute('markerHeight', '6');
+            marker.setAttribute('orient', 'auto');
+            
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', 'M0,0 L0,6 L9,3 z');
+            path.classList.add('connection-arrow', type);
+            
+            marker.appendChild(path);
+            defs.appendChild(marker);
+        });
+        
+        connectionSvg.appendChild(defs);
+        
+        // Draw initial connections for leadership (hub)
+        drawConnectionsForNode('leadership');
+    }
+    
+    // Function to get node center position in SVG coordinates
+    function getNodeCenter(nodeType) {
+        const node = document.querySelector(`[data-node="${nodeType}"]`);
+        if (!node) return { x: 0, y: 0 };
+        
+        const visual = document.querySelector('.network-visual');
+        const rect = node.getBoundingClientRect();
+        const visualRect = visual.getBoundingClientRect();
+        
+        return {
+            x: rect.left + rect.width / 2 - visualRect.left,
+            y: rect.top + rect.height / 2 - visualRect.top
+        };
+    }
+    
+    // Function to draw connections for a specific node
+    function drawConnectionsForNode(nodeType) {
+        if (!connectionSvg || !connectionData[nodeType]) return;
+        
+        // Clear existing connections
+        const existingLines = connectionSvg.querySelectorAll('.connection-line');
+        existingLines.forEach(line => line.remove());
+        
+        const sourcePos = getNodeCenter(nodeType);
+        const connections = connectionData[nodeType].connections;
+        
+        connections.forEach((conn, index) => {
+            const targetPos = getNodeCenter(conn.target);
+            
+            // Create connection line
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', sourcePos.x);
+            line.setAttribute('y1', sourcePos.y);
+            line.setAttribute('x2', targetPos.x);
+            line.setAttribute('y2', targetPos.y);
+            line.classList.add('connection-line', conn.strength);
+            line.setAttribute('marker-end', `url(#arrow-${conn.strength})`);
+            
+            // Add animation delay
+            line.style.animationDelay = `${index * 0.2}s`;
+            
+            connectionSvg.appendChild(line);
+            
+            // Animate line drawing
+            setTimeout(() => {
+                line.classList.add('highlighted');
+                setTimeout(() => {
+                    line.classList.remove('highlighted');
+                }, 1000);
+            }, index * 200);
+        });
+    }
+    
+    // Node click handlers
     networkNodes.forEach(node => {
         node.addEventListener('click', () => {
             // Remove active class from all nodes
@@ -448,7 +544,7 @@ function initializeStep2Interactions() {
                 const connectionsHTML = data.connections.map(conn => `
                     <div class="connection-item ${conn.strength}">
                         <span class="connection-icon">${conn.icon}</span>
-                        <span><strong>${conn.target}:</strong> ${conn.description}</span>
+                        <span><strong>${conn.target.charAt(0).toUpperCase() + conn.target.slice(1)}:</strong> ${conn.description}</span>
                     </div>
                 `).join('');
                 
@@ -461,7 +557,37 @@ function initializeStep2Interactions() {
                     </div>
                 `;
             }
+            
+            // Draw connections for selected node
+            drawConnectionsForNode(nodeType);
         });
+        
+        // Add hover effects
+        node.addEventListener('mouseenter', () => {
+            if (!node.classList.contains('active')) {
+                node.style.transform = 'scale(1.05)';
+            }
+        });
+        
+        node.addEventListener('mouseleave', () => {
+            if (!node.classList.contains('active')) {
+                node.style.transform = '';
+            }
+        });
+    });
+    
+    // Initialize the network visualization
+    setTimeout(() => {
+        initializeConnections();
+    }, 100); // Small delay to ensure DOM is ready
+    
+    // Handle window resize to redraw connections
+    window.addEventListener('resize', () => {
+        const activeNode = document.querySelector('.network-node.active');
+        if (activeNode) {
+            const nodeType = activeNode.getAttribute('data-node');
+            drawConnectionsForNode(nodeType);
+        }
     });
     
     // Mapping assessment checklist handlers
@@ -478,8 +604,345 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeStep2Interactions();
 });
 
+/**
+ * Check loop exercise answers for Step 3
+ */
+function checkLoopAnswers() {
+    const feedback = document.getElementById('loop-feedback');
+    if (feedback) {
+        feedback.style.display = 'block';
+        feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+}
+
+/**
+ * Update loop assessment score for Step 3
+ */
+function updateLoopAssessmentScore() {
+    const checkedItems = document.querySelectorAll('.loop-assessment input[type="checkbox"]:checked').length;
+    const totalItems = document.querySelectorAll('.loop-assessment input[type="checkbox"]').length;
+    const scoreElement = document.getElementById('loop-assessment-score');
+    
+    if (scoreElement && totalItems > 0) {
+        const percentage = Math.round((checkedItems / totalItems) * 100);
+        let message = '';
+        
+        if (percentage === 100) {
+            message = `🎉 Perfect! ${percentage}% - You've mastered feedback loop dynamics!`;
+        } else if (percentage >= 80) {
+            message = `🌟 Great work! ${percentage}% - You're seeing the loops!`;
+        } else if (percentage >= 60) {
+            message = `👍 Good progress! ${percentage}% - Keep tracing those feedback cycles!`;
+        } else if (percentage >= 40) {
+            message = `📝 Getting there! ${percentage}% - Review the loop detection framework above.`;
+        } else {
+            message = `🔄 ${percentage}% - Take time to practice the 5-step loop detection process.`;
+        }
+        
+        scoreElement.textContent = message;
+    }
+}
+
+/**
+ * Initialize Step 3 loop interactions
+ */
+function initializeStep3Interactions() {
+    // Loop scenario tab handlers
+    const scenarioTabs = document.querySelectorAll('.scenario-tab');
+    const loopScenarios = document.querySelectorAll('.loop-scenario');
+    
+    scenarioTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const scenarioType = tab.getAttribute('data-scenario');
+            
+            // Update tab active state
+            scenarioTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            // Update scenario visibility
+            loopScenarios.forEach(scenario => {
+                scenario.classList.remove('active');
+                if (scenario.getAttribute('data-scenario') === scenarioType) {
+                    scenario.classList.add('active');
+                }
+            });
+            
+            // Reset any running animations
+            stopLoopAnimation();
+        });
+    });
+    
+    // Loop animation controls
+    const playButton = document.getElementById('playLoopAnimation');
+    const speedControl = document.getElementById('animationSpeed');
+    
+    if (playButton) {
+        playButton.addEventListener('click', toggleLoopAnimation);
+    }
+    
+    if (speedControl) {
+        speedControl.addEventListener('input', (e) => {
+            updateAnimationSpeed(parseFloat(e.target.value));
+        });
+    }
+    
+    // Loop assessment checklist handlers
+    const loopAssessmentCheckboxes = document.querySelectorAll('.loop-assessment input[type="checkbox"]');
+    loopAssessmentCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateLoopAssessmentScore);
+    });
+}
+
+/**
+ * Loop animation state
+ */
+let loopAnimationState = {
+    isPlaying: false,
+    currentStep: 0,
+    intervalId: null,
+    speed: 1000 // milliseconds
+};
+
+/**
+ * Toggle loop animation
+ */
+function toggleLoopAnimation() {
+    const playButton = document.getElementById('playLoopAnimation');
+    const playText = playButton.querySelector('.play-text');
+    
+    if (loopAnimationState.isPlaying) {
+        stopLoopAnimation();
+        playButton.classList.remove('playing');
+        playText.textContent = 'Watch Loop in Action';
+    } else {
+        startLoopAnimation();
+        playButton.classList.add('playing');
+        playText.textContent = 'Stop Animation';
+    }
+}
+
+/**
+ * Start loop animation
+ */
+function startLoopAnimation() {
+    const activeScenario = document.querySelector('.loop-scenario.active');
+    if (!activeScenario) return;
+    
+    const loopNodes = activeScenario.querySelectorAll('.loop-node');
+    const loopArrows = activeScenario.querySelectorAll('.loop-arrow');
+    const allElements = [...loopNodes, ...loopArrows];
+    
+    // Reset all elements
+    allElements.forEach(element => {
+        element.classList.remove('animated');
+    });
+    
+    loopAnimationState.isPlaying = true;
+    loopAnimationState.currentStep = 0;
+    
+    // Add animating class to container
+    activeScenario.classList.add('loop-animating');
+    
+    // Start animation sequence
+    animateNextStep(allElements);
+}
+
+/**
+ * Animate next step in the loop
+ */
+function animateNextStep(elements) {
+    if (!loopAnimationState.isPlaying || loopAnimationState.currentStep >= elements.length) {
+        // Animation complete, restart from beginning
+        if (loopAnimationState.isPlaying) {
+            setTimeout(() => {
+                loopAnimationState.currentStep = 0;
+                // Reset all elements
+                elements.forEach(element => {
+                    element.classList.remove('animated');
+                });
+                // Restart animation
+                setTimeout(() => animateNextStep(elements), 500);
+            }, 1000);
+        }
+        return;
+    }
+    
+    // Animate current element
+    const currentElement = elements[loopAnimationState.currentStep];
+    if (currentElement) {
+        currentElement.classList.add('animated');
+    }
+    
+    loopAnimationState.currentStep++;
+    
+    // Schedule next step
+    loopAnimationState.intervalId = setTimeout(() => {
+        animateNextStep(elements);
+    }, loopAnimationState.speed);
+}
+
+/**
+ * Stop loop animation
+ */
+function stopLoopAnimation() {
+    loopAnimationState.isPlaying = false;
+    
+    if (loopAnimationState.intervalId) {
+        clearTimeout(loopAnimationState.intervalId);
+        loopAnimationState.intervalId = null;
+    }
+    
+    // Remove animating class from all scenarios
+    const scenarios = document.querySelectorAll('.loop-scenario');
+    scenarios.forEach(scenario => {
+        scenario.classList.remove('loop-animating');
+        
+        // Reset all elements
+        const elements = scenario.querySelectorAll('.loop-node, .loop-arrow');
+        elements.forEach(element => {
+            element.classList.remove('animated');
+        });
+    });
+}
+
+/**
+ * Update animation speed
+ */
+function updateAnimationSpeed(speed) {
+    loopAnimationState.speed = 2000 / speed; // Invert so higher = faster
+}
+
+/**
+ * Enhanced initialization that includes all step interactions
+ */
+function initializeAllStepInteractions() {
+    // Call original initialization
+    initializeNavigation();
+    
+    // Initialize step-specific interactions
+    initializeStep1Interactions();
+    initializeStep2Interactions();
+    initializeStep3Interactions();
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initializeAllStepInteractions();
+});
+
+/**
+ * Check stocks exercise answers for Step 4
+ */
+function checkStocksAnswers() {
+    const feedback = document.getElementById('stocks-feedback');
+    if (feedback) {
+        feedback.style.display = 'block';
+        feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+}
+
+/**
+ * Update stocks assessment score for Step 4
+ */
+function updateStocksAssessmentScore() {
+    const checkedItems = document.querySelectorAll('.stocks-assessment input[type="checkbox"]:checked').length;
+    const totalItems = document.querySelectorAll('.stocks-assessment input[type="checkbox"]').length;
+    const scoreElement = document.getElementById('stocks-assessment-score');
+    
+    if (scoreElement && totalItems > 0) {
+        const percentage = Math.round((checkedItems / totalItems) * 100);
+        let message = '';
+        
+        if (percentage === 100) {
+            message = `🎉 Perfect! ${percentage}% - You've mastered stock and flow dynamics!`;
+        } else if (percentage >= 80) {
+            message = `🌟 Great work! ${percentage}% - You're understanding the structure!`;
+        } else if (percentage >= 60) {
+            message = `👍 Good progress! ${percentage}% - Keep building that stock & flow thinking!`;
+        } else if (percentage >= 40) {
+            message = `📝 Getting there! ${percentage}% - Review the 4-step framework above.`;
+        } else {
+            message = `🔄 ${percentage}% - Take time to practice identifying stocks vs flows.`;
+        }
+        
+        scoreElement.textContent = message;
+    }
+}
+
+/**
+ * Initialize Step 4 stock and flow interactions
+ */
+function initializeStep4Interactions() {
+    // Stocks assessment checklist handlers
+    const stocksAssessmentCheckboxes = document.querySelectorAll('.stocks-assessment input[type="checkbox"]');
+    stocksAssessmentCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateStocksAssessmentScore);
+    });
+    
+    // Practice exercise visual feedback
+    const stocksCheckboxes = document.querySelectorAll('.stocks-options input[type="checkbox"]');
+    stocksCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            const parentLabel = checkbox.closest('.stocks-option');
+            if (parentLabel) {
+                if (checkbox.classList.contains('stock-item') && checkbox.checked) {
+                    parentLabel.style.background = 'rgba(5, 150, 105, 0.2)';
+                } else if (checkbox.classList.contains('flow-item') && checkbox.checked) {
+                    parentLabel.style.background = 'rgba(239, 68, 68, 0.2)';
+                } else {
+                    parentLabel.style.background = '';
+                }
+            }
+        });
+    });
+    
+    // Radio button visual feedback for delays and hiring questions
+    const stocksRadioButtons = document.querySelectorAll('.stocks-radio-options input[type="radio"]');
+    stocksRadioButtons.forEach(radio => {
+        radio.addEventListener('change', () => {
+            // Reset all options in the same group
+            const groupName = radio.getAttribute('name');
+            const groupOptions = document.querySelectorAll(`input[name="${groupName}"]`);
+            groupOptions.forEach(option => {
+                const parentLabel = option.closest('.stocks-radio-option');
+                if (parentLabel) {
+                    parentLabel.style.background = '';
+                }
+            });
+            
+            // Highlight selected option
+            const parentLabel = radio.closest('.stocks-radio-option');
+            if (parentLabel && radio.checked) {
+                if (radio.value === 'right') {
+                    parentLabel.style.background = 'rgba(34, 197, 94, 0.2)';
+                } else {
+                    parentLabel.style.background = 'rgba(245, 158, 11, 0.2)';
+                }
+            }
+        });
+    });
+}
+
+/**
+ * Enhanced initialization that includes all step interactions
+ */
+function initializeAllStepInteractions() {
+    // Call original initialization
+    initializeNavigation();
+    
+    // Initialize step-specific interactions
+    initializeStep1Interactions();
+    initializeStep2Interactions();
+    initializeStep3Interactions();
+    initializeStep4Interactions();
+}
+
 // Make functions globally available for onclick handlers
 window.checkPracticeAnswers = checkPracticeAnswers;
 window.updateAssessmentScore = updateAssessmentScore;
 window.checkMappingAnswers = checkMappingAnswers;
 window.updateMappingAssessmentScore = updateMappingAssessmentScore;
+window.checkLoopAnswers = checkLoopAnswers;
+window.updateLoopAssessmentScore = updateLoopAssessmentScore;
+window.checkStocksAnswers = checkStocksAnswers;
+window.updateStocksAssessmentScore = updateStocksAssessmentScore;
