@@ -326,6 +326,160 @@ window.SystemsThinking = {
     updateAssessmentScore
 };
 
+/**
+ * Check mapping exercise answers for Step 2
+ */
+function checkMappingAnswers() {
+    const feedback = document.getElementById('mapping-feedback');
+    if (feedback) {
+        feedback.style.display = 'block';
+        feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+}
+
+/**
+ * Update mapping assessment score for Step 2
+ */
+function updateMappingAssessmentScore() {
+    const checkedItems = document.querySelectorAll('.mapping-assessment input[type="checkbox"]:checked').length;
+    const totalItems = document.querySelectorAll('.mapping-assessment input[type="checkbox"]').length;
+    const scoreElement = document.getElementById('mapping-assessment-score');
+    
+    if (scoreElement && totalItems > 0) {
+        const percentage = Math.round((checkedItems / totalItems) * 100);
+        let message = '';
+        
+        if (percentage === 100) {
+            message = `🎉 Perfect! ${percentage}% - You've mastered interconnection mapping!`;
+        } else if (percentage >= 80) {
+            message = `🌟 Great work! ${percentage}% - You're seeing the connections!`;
+        } else if (percentage >= 60) {
+            message = `👍 Good progress! ${percentage}% - Keep mapping those relationships!`;
+        } else if (percentage >= 40) {
+            message = `📝 Getting there! ${percentage}% - Review the mapping framework above.`;
+        } else {
+            message = `🔄 ${percentage}% - Take time to practice the 5-step mapping process.`;
+        }
+        
+        scoreElement.textContent = message;
+    }
+}
+
+/**
+ * Initialize Step 2 interactive network visualization
+ */
+function initializeStep2Interactions() {
+    // Network node interaction
+    const networkNodes = document.querySelectorAll('.network-node');
+    const connectionDetails = document.getElementById('connection-details');
+    
+    // Network connection data
+    const connectionData = {
+        leadership: {
+            title: 'Leadership Connections',
+            connections: [
+                { target: 'Culture', strength: 'strong', description: 'Leaders shape values and behaviors', icon: '➜' },
+                { target: 'Processes', strength: 'strong', description: 'Sets priorities and resource allocation', icon: '➜' },
+                { target: 'People', strength: 'medium', description: 'Hiring, promotion, and development decisions', icon: '➜' },
+                { target: 'Results', strength: 'weak', description: 'Indirect through culture and processes', icon: '〰️' }
+            ]
+        },
+        culture: {
+            title: 'Culture Connections',
+            connections: [
+                { target: 'People', strength: 'strong', description: 'Culture attracts and shapes behavior', icon: '➜' },
+                { target: 'Processes', strength: 'medium', description: 'Influences how work gets done', icon: '➜' },
+                { target: 'Customers', strength: 'medium', description: 'Culture affects customer experience', icon: '➜' },
+                { target: 'Leadership', strength: 'medium', description: 'Culture can influence leadership decisions', icon: '↔️' }
+            ]
+        },
+        processes: {
+            title: 'Process Connections',
+            connections: [
+                { target: 'Results', strength: 'strong', description: 'Processes directly drive outcomes', icon: '➜' },
+                { target: 'People', strength: 'medium', description: 'Processes shape daily work experience', icon: '➜' },
+                { target: 'Customers', strength: 'strong', description: 'Processes create customer experience', icon: '➜' },
+                { target: 'Culture', strength: 'weak', description: 'Processes can reinforce cultural values', icon: '〰️' }
+            ]
+        },
+        people: {
+            title: 'People Connections',
+            connections: [
+                { target: 'Results', strength: 'strong', description: 'People execute and deliver outcomes', icon: '➜' },
+                { target: 'Customers', strength: 'strong', description: 'People directly interact with customers', icon: '➜' },
+                { target: 'Culture', strength: 'medium', description: 'People both shape and reflect culture', icon: '↔️' },
+                { target: 'Processes', strength: 'medium', description: 'People can improve or work around processes', icon: '↔️' }
+            ]
+        },
+        results: {
+            title: 'Results Connections',
+            connections: [
+                { target: 'Leadership', strength: 'medium', description: 'Results influence leadership decisions', icon: '➜' },
+                { target: 'Customers', strength: 'strong', description: 'Results affect customer satisfaction', icon: '➜' },
+                { target: 'People', strength: 'weak', description: 'Results impact morale and motivation', icon: '〰️' },
+                { target: 'Processes', strength: 'weak', description: 'Results may trigger process changes', icon: '〰️' }
+            ]
+        },
+        customers: {
+            title: 'Customer Connections',
+            connections: [
+                { target: 'Results', strength: 'strong', description: 'Customer satisfaction drives business results', icon: '➜' },
+                { target: 'Leadership', strength: 'weak', description: 'Customer feedback influences strategy', icon: '〰️' },
+                { target: 'Processes', strength: 'medium', description: 'Customer needs shape process design', icon: '➜' },
+                { target: 'People', strength: 'medium', description: 'Customer interactions affect employee experience', icon: '↔️' }
+            ]
+        }
+    };
+    
+    networkNodes.forEach(node => {
+        node.addEventListener('click', () => {
+            // Remove active class from all nodes
+            networkNodes.forEach(n => n.classList.remove('active'));
+            
+            // Add active class to clicked node
+            node.classList.add('active');
+            
+            // Get node data
+            const nodeType = node.getAttribute('data-node');
+            const data = connectionData[nodeType];
+            
+            if (data && connectionDetails) {
+                // Update connection details
+                const connectionsHTML = data.connections.map(conn => `
+                    <div class="connection-item ${conn.strength}">
+                        <span class="connection-icon">${conn.icon}</span>
+                        <span><strong>${conn.target}:</strong> ${conn.description}</span>
+                    </div>
+                `).join('');
+                
+                connectionDetails.innerHTML = `
+                    <div class="connection-info">
+                        <h4>${data.title}</h4>
+                        <div class="connection-list">
+                            ${connectionsHTML}
+                        </div>
+                    </div>
+                `;
+            }
+        });
+    });
+    
+    // Mapping assessment checklist handlers
+    const mappingAssessmentCheckboxes = document.querySelectorAll('.mapping-assessment input[type="checkbox"]');
+    mappingAssessmentCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateMappingAssessmentScore);
+    });
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initializeNavigation();
+    initializeStep1Interactions();
+    initializeStep2Interactions();
+});
+
 // Make functions globally available for onclick handlers
 window.checkPracticeAnswers = checkPracticeAnswers;
 window.updateAssessmentScore = updateAssessmentScore;
+window.checkMappingAnswers = checkMappingAnswers;
+window.updateMappingAssessmentScore = updateMappingAssessmentScore;
