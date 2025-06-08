@@ -1966,6 +1966,76 @@ body {
     color: #0d7377;
 }
 
+/* ===== FOOTER STYLES ===== */
+.site-footer {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    margin-top: 2rem;
+    position: relative;
+}
+
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #1e3a8a, #0d7377, #fbbf24, #dc2626, #7c3aed);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-message {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    color: #6b7280;
+    transition: all 0.3s ease;
+}
+
+.footer-message:hover {
+    color: #1f2937;
+    transform: translateY(-1px);
+}
+
+.footer-icon {
+    font-size: 1.25rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.footer-text {
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.footer-text strong {
+    color: #0d7377;
+    font-weight: 600;
+    background: linear-gradient(135deg, #0d7377, #1e3a8a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.3s ease;
+}
+
+.footer-message:hover .footer-text strong {
+    background: linear-gradient(135deg, #1e3a8a, #0d7377);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 1024px) {
     .main-layout {
@@ -2076,6 +2146,17 @@ body {
     }
 }
 
+@media (max-width: 768px) {
+    .footer-content {
+        padding: 1rem 1.5rem;
+    }
+    
+    .footer-message {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+}
+
 @media (max-width: 480px) {
     .step-menu {
         gap: 0.25rem;
@@ -2105,5 +2186,20 @@ body {
         font-size: 1.2rem;
         top: -30px;
         right: -30px;
+    }
+    
+    .footer-content {
+        padding: 1rem;
+    }
+    
+    .footer-message {
+        font-size: 0.85rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .footer-icon {
+        font-size: 1.1rem;
     }
 }
