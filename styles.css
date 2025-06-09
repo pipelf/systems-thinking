@@ -751,6 +751,90 @@ body {
     font-style: italic;
 }
 
+/* ===== MENTAL MODEL SPECIFIC STYLES ===== */
+
+/* Mental Models Importance Section */
+.mental-models-importance {
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(220, 38, 38, 0.05));
+    border: 2px solid rgba(220, 38, 38, 0.3);
+}
+
+/* Mental Models Concepts */
+.mental-models-concepts {
+    margin: 2rem 0;
+}
+
+.mental-models-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.mental-model-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.mental-model-card.personal {
+    border-color: #7c3aed;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(124, 58, 237, 0.05));
+}
+
+.mental-model-card.organizational {
+    border-color: #0d7377;
+    background: linear-gradient(135deg, rgba(13, 115, 119, 0.1), rgba(13, 115, 119, 0.05));
+}
+
+.mental-model-card.systemic {
+    border-color: #dc2626;
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(220, 38, 38, 0.05));
+}
+
+.mental-model-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.mental-model-examples {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.mental-model-example {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    border-left: 3px solid;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.mental-model-card.personal .mental-model-example {
+    border-left-color: #7c3aed;
+}
+
+.mental-model-card.organizational .mental-model-example {
+    border-left-color: #0d7377;
+}
+
+.mental-model-card.systemic .mental-model-example {
+    border-left-color: #dc2626;
+}
+
+/* Mental Models Framework */
+.mental-models-framework {
+    background: rgba(220, 38, 38, 0.05);
+    border: 2px solid rgba(220, 38, 38, 0.2);
+}
+
+.mental-models-steps .step-dot {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
 /* ===== NAVIGATION CONTROLS ===== */
 .content-navigation {
     display: flex;
